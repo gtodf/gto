@@ -1,0 +1,3549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>GTO | Sistema</title>
+
+
+    <style>
+
+        /* =========================================================
+           RESET
+           ========================================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #075e54
+                );
+
+            color: #1e293b;
+        }
+
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+
+        button {
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           NAVEGAÇÃO DO SISTEMA
+           ========================================================= */
+
+        .tela {
+            display: none;
+            min-height: 100vh;
+        }
+
+
+        .tela.ativa {
+            display: block;
+            animation: aparecerTela 0.25s ease;
+        }
+
+
+        @keyframes aparecerTela {
+
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================================================
+           TELA INICIAL
+           ========================================================= */
+
+        #telaInicio {
+
+            display: none;
+
+            min-height: 100vh;
+
+            padding: 20px;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+        }
+
+
+        #telaInicio.ativa {
+            display: flex;
+        }
+
+
+        .inicio-container {
+
+            width: 100%;
+            max-width: 900px;
+
+        }
+
+
+        .inicio-logo {
+
+            width: 130px;
+            height: 130px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 30px;
+
+            background: #ffffff;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0, 0, 0, 0.25);
+
+        }
+
+
+        .inicio-logo span {
+
+            font-size: 42px;
+
+            font-weight: 900;
+
+            color: #075e54;
+
+            letter-spacing: -3px;
+
+        }
+
+
+        .inicio-titulo {
+
+            font-size: 38px;
+
+            margin-bottom: 8px;
+
+            color: #fff;
+
+            font-weight: 800;
+
+        }
+
+
+        .inicio-subtitulo {
+
+            color: #d1fae5;
+
+            font-size: 16px;
+
+            margin-bottom: 40px;
+
+        }
+
+
+        .inicio-menu {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        .inicio-card {
+
+            width: 100%;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.97
+                );
+
+            color: #1e293b;
+
+            padding: 30px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            text-decoration: none;
+
+            display: block;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.15);
+
+        }
+
+
+        .inicio-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            box-shadow:
+                0 18px 40px
+                rgba(0, 0, 0, 0.25);
+
+        }
+
+
+        .inicio-icone {
+
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 18px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            font-size: 34px;
+
+            background: #dcfce7;
+
+        }
+
+
+        .inicio-card h2 {
+
+            font-size: 21px;
+
+            margin-bottom: 8px;
+
+            color: #0f172a;
+
+        }
+
+
+        .inicio-card p {
+
+            font-size: 14px;
+
+            color: #64748b;
+
+            line-height: 1.5;
+
+        }
+
+
+        .inicio-footer {
+
+            margin-top: 35px;
+
+            color: #cbd5e1;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================================================
+           BOTÃO VOLTAR
+           ========================================================= */
+
+        .botao-voltar {
+
+            border: none;
+
+            background: #0f766e;
+
+            color: #fff;
+
+            padding: 10px 16px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+
+            transition: 0.2s;
+
+        }
+
+
+        .botao-voltar:hover {
+
+            background: #115e59;
+
+            transform:
+                translateX(-2px);
+
+        }
+
+
+        /* =========================================================
+           RELATÓRIO DE ATENDIMENTO
+           ========================================================= */
+
+        #telaAtendimento {
+
+            background: #f1f5f9;
+
+            min-height: 100vh;
+
+            padding: 20px;
+
+        }
+
+
+        .atendimento-container {
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+        }
+
+
+        .atendimento-cabecalho {
+
+            background: #075e54;
+
+            color: white;
+
+            padding: 25px;
+
+            border-radius:
+                15px 15px 0 0;
+
+            text-align: center;
+
+        }
+
+
+        .atendimento-cabecalho h1 {
+
+            margin: 0 0 8px;
+
+            font-size: 26px;
+
+        }
+
+
+        .atendimento-cabecalho p {
+
+            margin: 0;
+
+            opacity: 0.9;
+
+        }
+
+
+        .atendimento-card {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius:
+                0 0 15px 15px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        .atendimento-campo {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .atendimento-campo label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: bold;
+
+            color: #334155;
+
+        }
+
+
+        .atendimento-card input[type="text"],
+        .atendimento-card input[type="date"],
+        .atendimento-card textarea {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            outline: none;
+
+            transition: 0.2s;
+
+        }
+
+
+        .atendimento-card input[type="text"]:focus,
+        .atendimento-card input[type="date"]:focus,
+        .atendimento-card textarea:focus {
+
+            border-color: #075e54;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    7,
+                    94,
+                    84,
+                    0.1
+                );
+
+        }
+
+
+        .atendimento-tecnicos {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 8px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 10px;
+
+            padding: 12px;
+
+        }
+
+
+        .atendimento-tecnico {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 9px 10px;
+
+            background: white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-weight: normal;
+
+            transition: 0.2s;
+
+        }
+
+
+        .atendimento-tecnico:hover {
+
+            background: #ecfdf5;
+
+            border-color: #25d366;
+
+        }
+
+
+        .atendimento-tecnico input[type="checkbox"] {
+
+            width: 18px;
+            height: 18px;
+
+            margin: 0;
+
+            cursor: pointer;
+
+            accent-color: #075e54;
+
+        }
+
+
+        .atendimento-tecnico.selecionado {
+
+            background: #dcfce7;
+
+            border-color: #25d366;
+
+        }
+
+
+        .atendimento-outros {
+
+            grid-column: 1 / -1;
+
+            display: none;
+
+        }
+
+
+        .atendimento-outros.mostrar {
+
+            display: block;
+
+        }
+
+
+        .atendimento-card hr {
+
+            border: none;
+
+            border-top:
+                1px solid #e2e8f0;
+
+            margin:
+                25px 0;
+
+        }
+
+
+        .atendimento-botoes {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr 1fr;
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .atendimento-botoes button {
+
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 14px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+
+        }
+
+
+        .atendimento-botoes button:hover {
+
+            transform:
+                translateY(-1px);
+
+            opacity: 0.92;
+
+        }
+
+
+        .btn-whatsapp {
+
+            background: #25d366;
+
+            color: white;
+
+        }
+
+
+        .btn-copiar {
+
+            background: #2563eb;
+
+            color: white;
+
+        }
+
+
+        .btn-limpar {
+
+            background: #64748b;
+
+            color: white;
+
+        }
+
+
+        .atendimento-preview {
+
+            margin-top: 25px;
+
+        }
+
+
+        .atendimento-preview h2 {
+
+            font-size: 19px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        #mensagemPreview {
+
+            width: 100%;
+
+            min-height: 300px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            resize: vertical;
+
+            white-space: pre-wrap;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 15px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .atendimento-aviso {
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            background: #ecfdf5;
+
+            border-left:
+                4px solid #25d366;
+
+            border-radius: 5px;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================================================
+           RELATÓRIO A4
+           ========================================================= */
+
+        #telaProgramacao {
+
+            min-height: 100vh;
+
+            background: #ddd;
+
+            padding: 20px;
+
+            color: #000;
+
+        }
+
+
+        .programacao-area {
+
+            width: 210mm;
+
+            min-height: 297mm;
+
+            margin: 0 auto;
+
+            padding:
+                9mm 13mm 8mm;
+
+            background: #fff;
+
+            overflow: hidden;
+
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 11px;
+
+        }
+
+
+        .programacao-navegacao {
+
+            width: 210mm;
+
+            margin: 0 auto;
+
+        }
+
+
+        .programacao-area table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            table-layout: fixed;
+
+        }
+
+
+        .programacao-area td,
+        .programacao-area th {
+
+            border:
+                0.25mm solid #111;
+
+            padding:
+                1mm 1.2mm;
+
+            font-size: 11px;
+
+            line-height: 1.05;
+
+            vertical-align: middle;
+
+        }
+
+
+        .programacao-cabecalho {
+
+            height: 29mm;
+
+            position: relative;
+
+        }
+
+
+        .programacao-logo {
+
+            position: absolute;
+
+            left: 5mm;
+
+            top: -1mm;
+
+            width: 22mm;
+
+        }
+
+
+        .programacao-logo img {
+
+            max-width: 22mm;
+
+            max-height: 20mm;
+
+            display: block;
+
+            margin:
+                2.55mm auto;
+
+        }
+
+
+        .programacao-dados-cabecalho {
+
+            position: absolute;
+
+            left: 29mm;
+
+            top: 0;
+
+            font-size: 11px;
+
+            line-height: 1.25;
+
+            white-space: nowrap;
+
+        }
+
+
+        .programacao-titulo {
+
+            text-align: center;
+
+            font-size: 11.5px;
+
+            font-weight: bold;
+
+            margin-bottom: 1mm;
+
+        }
+
+
+        .programacao-info td {
+
+            height: 6.25mm;
+
+        }
+
+
+        .programacao-servico td {
+
+            height: 7mm;
+
+        }
+
+
+        .programacao-radio {
+
+            appearance: none;
+
+            -webkit-appearance: none;
+
+            width: 3.5mm;
+
+            height: 3.5mm;
+
+            border:
+                0.25mm solid #000;
+
+            border-radius: 50%;
+
+            margin:
+                1mm 1mm 0 0;
+
+            padding: 0;
+
+            vertical-align: -0.7mm;
+
+            background: #fff;
+
+            position: relative;
+
+        }
+
+
+        .programacao-radio:checked {
+
+            box-shadow:
+                inset 0 0 0 0.9mm #ff0000;
+
+        }
+
+
+        .programacao-editavel {
+
+            border: none;
+
+            outline: none;
+
+            background: transparent;
+
+            color: red;
+
+            font-family: inherit;
+
+            font-size: inherit;
+
+            padding: 0;
+
+            margin: 0;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .programacao-editavel::placeholder {
+
+            color: #cc0000;
+
+            opacity: 0.7;
+
+        }
+
+
+        .programacao-editavel:focus {
+
+            background: #fff0f0;
+
+            box-shadow:
+                inset 0 -0.3mm red;
+
+        }
+
+
+        .programacao-endereco {
+            width: 150mm;
+        }
+
+
+        .programacao-sentido {
+            width: 150mm;
+        }
+
+
+        .programacao-ponto {
+            width: 100mm;
+        }
+
+
+        .programacao-faixa {
+            width: 4mm;
+            text-align: left;
+        }
+
+
+        .programacao-velocidade {
+            width: 3mm;
+            text-align: left;
+        }
+
+
+        .programacao-cdf {
+            width: 8mm;
+            text-align: left;
+        }
+
+
+        .programacao-ensaio {
+
+            margin-top: 4.5mm;
+
+        }
+
+
+        .programacao-ensaio-titulo {
+
+            text-align: center;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            margin-bottom: 1mm;
+
+        }
+
+
+        .programacao-ensaio th {
+
+            height: 6.5mm;
+
+            text-align: center;
+
+        }
+
+
+        .programacao-ensaio td {
+
+            height: 6.15mm;
+
+        }
+
+
+        .programacao-inferior {
+
+            margin-top: 4mm;
+
+        }
+
+
+        .programacao-inferior td {
+
+            height: 9mm;
+
+            vertical-align: top;
+
+            padding-top: 1.5mm;
+
+        }
+
+
+        .programacao-pessoas td {
+
+            height: 6.5mm;
+
+        }
+
+
+        .programacao-aprovacao {
+
+            margin-top: 7mm;
+
+            display: flex;
+
+            justify-content: space-around;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+        }
+
+
+        .programacao-observacoes {
+
+            margin-top: 4mm;
+
+            height: 22mm;
+
+            border:
+                0.25mm solid #111;
+
+            padding: 1.2mm;
+
+            font-size: 11px;
+
+        }
+
+
+        .programacao-botoes {
+
+            text-align: center;
+
+            margin-top: 5mm;
+
+        }
+
+
+        .programacao-botoes button {
+
+            background: #333;
+
+            color: #fff;
+
+            border: none;
+
+            padding: 10px 20px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            border-radius: 4px;
+
+        }
+
+
+        .programacao-botoes button:hover {
+
+            background: #555;
+
+        }
+
+
+        .programacao-campo-incompleto {
+
+            background: #ffe0e0 !important;
+
+            box-shadow:
+                inset 0 -0.5mm red !important;
+
+        }
+
+
+        /* =========================================================
+           RESPONSIVO
+           ========================================================= */
+
+        @media (max-width: 700px) {
+
+            #telaInicio {
+                padding: 15px;
+            }
+
+
+            .inicio-logo {
+
+                width: 105px;
+                height: 105px;
+
+                border-radius: 25px;
+
+            }
+
+
+            .inicio-logo span {
+
+                font-size: 34px;
+
+            }
+
+
+            .inicio-titulo {
+
+                font-size: 30px;
+
+            }
+
+
+            .inicio-menu {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            #telaAtendimento {
+
+                padding: 10px;
+
+            }
+
+
+            .atendimento-card {
+
+                padding: 18px;
+
+            }
+
+
+            .atendimento-botoes {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .atendimento-tecnicos {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+
+            .atendimento-cabecalho h1 {
+
+                font-size: 21px;
+
+            }
+
+
+            #telaProgramacao {
+
+                padding: 10px;
+
+                overflow-x: auto;
+
+            }
+
+
+            .programacao-area {
+
+                margin-left: auto;
+                margin-right: auto;
+
+            }
+
+
+            .programacao-navegacao {
+
+                width: 100%;
+
+                margin-bottom: 10px;
+
+            }
+
+        }
+
+
+        @media (max-width: 400px) {
+
+            .atendimento-tecnicos {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           IMPRESSÃO
+           ========================================================= */
+
+        @page {
+
+            size: A4 portrait;
+
+            margin: 0;
+
+        }
+
+
+        @media print {
+
+            html,
+            body {
+
+                background: #fff !important;
+
+            }
+
+
+            body * {
+
+                visibility: hidden;
+
+            }
+
+
+            #telaProgramacao,
+            #telaProgramacao * {
+
+                visibility: visible;
+
+            }
+
+
+            #telaProgramacao {
+
+                position: absolute;
+
+                left: 0;
+
+                top: 0;
+
+                width: 100%;
+
+                padding: 0;
+
+                background: #fff;
+
+            }
+
+
+            .programacao-navegacao {
+
+                display: none !important;
+
+            }
+
+
+            .programacao-area {
+
+                width: 210mm;
+
+                height: 297mm;
+
+                margin: 0;
+
+                box-shadow: none;
+
+            }
+
+
+            .programacao-editavel:focus {
+
+                background: transparent;
+
+                box-shadow: none;
+
+            }
+
+
+            .programacao-botoes {
+
+                display: none !important;
+
+            }
+
+
+            .programacao-radio {
+
+                appearance: none;
+
+                -webkit-appearance: none;
+
+                width: 3.5mm;
+
+                height: 3.5mm;
+
+                border:
+                    0.35mm solid #000;
+
+                border-radius: 50%;
+
+                background: #fff;
+
+            }
+
+
+            .programacao-radio:checked {
+
+                background: #000;
+
+                box-shadow:
+                    inset 0 0 0 0.8mm #fff;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         TELA INICIAL
+         ========================================================= -->
+
+    <section
+        id="telaInicio"
+        class="tela ativa">
+
+        <div class="inicio-container">
+
+
+            <div class="inicio-logo">
+
+                <span>
+                    GTO
+                </span>
+
+            </div>
+
+
+            <h1 class="inicio-titulo">
+                GTO
+            </h1>
+
+
+            <p class="inicio-subtitulo">
+                Sistema de Controle e Atendimento
+            </p>
+
+
+            <div class="inicio-menu">
+
+
+                <!-- RELATÓRIO DE ATENDIMENTO -->
+
+                <button
+                    type="button"
+                    class="inicio-card"
+                    onclick="abrirTela('telaAtendimento')">
+
+                    <div class="inicio-icone">
+                        📋
+                    </div>
+
+                    <h2>
+                        Relatório de Atendimento
+                    </h2>
+
+                    <p>
+                        Preencha os atendimentos,
+                        selecione os técnicos
+                        e envie o relatório
+                        pelo WhatsApp.
+                    </p>
+
+                </button>
+
+
+                <!-- PROGRAMAÇÃO -->
+
+                <button
+                    type="button"
+                    class="inicio-card"
+                    onclick="abrirTela('telaProgramacao')">
+
+                    <div class="inicio-icone">
+                        📅
+                    </div>
+
+                    <h2>
+                        Programação do Dia
+                    </h2>
+
+                    <p>
+                        Preencha o relatório
+                        de medidores de velocidade
+                        e imprima ou salve
+                        em PDF.
+                    </p>
+
+                </button>
+
+
+            </div>
+
+
+            <footer class="inicio-footer">
+
+                GTO © 2026 — Sistema interno
+
+            </footer>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         TELA — RELATÓRIO DE ATENDIMENTO
+         ========================================================= -->
+
+    <section
+        id="telaAtendimento"
+        class="tela">
+
+
+        <div class="atendimento-container">
+
+
+            <button
+                type="button"
+                class="botao-voltar"
+                onclick="abrirTela('telaInicio')">
+
+                ← Voltar ao início
+
+            </button>
+
+
+            <div class="atendimento-cabecalho">
+
+                <h1>
+                    📋 RELATÓRIO DE ATENDIMENTO
+                </h1>
+
+                <p>
+                    Preencha os dados e envie pelo WhatsApp
+                </p>
+
+            </div>
+
+
+            <div class="atendimento-card">
+
+
+                <!-- DATA -->
+
+                <div class="atendimento-campo">
+
+                    <label for="atendimentoData">
+                        📅 Data
+                    </label>
+
+                    <input
+                        type="date"
+                        id="atendimentoData">
+
+                </div>
+
+
+                <!-- CDF -->
+
+                <div class="atendimento-campo">
+
+                    <label>
+                        👷 Atendimento CDF
+                    </label>
+
+                    <div
+                        class="atendimento-tecnicos"
+                        data-grupo="cdf">
+                    </div>
+
+                </div>
+
+
+                <!-- CN2 -->
+
+                <div class="atendimento-campo">
+
+                    <label>
+                        👷 Atendimento CN2
+                    </label>
+
+                    <div
+                        class="atendimento-tecnicos"
+                        data-grupo="cn2">
+                    </div>
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- AFERIÇÃO -->
+
+                <div class="atendimento-campo">
+
+                    <label>
+                        👷 Aferição
+                    </label>
+
+                    <div
+                        class="atendimento-tecnicos"
+                        data-grupo="afericao">
+                    </div>
+
+                </div>
+
+
+                <div class="atendimento-campo">
+
+                    <label for="atendimentoPontoServico">
+                        🛣️ Ponto e Serviço
+                    </label>
+
+                    <input
+                        type="text"
+                        id="atendimentoPontoServico"
+                        placeholder="Digite a informação">
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- ATUALIZAÇÃO DE CAIXA -->
+
+                <div class="atendimento-campo">
+
+                    <label>
+                        📱 Atualização de Caixa
+                    </label>
+
+                    <div
+                        class="atendimento-tecnicos"
+                        data-grupo="atualizacaoCaixa">
+                    </div>
+
+                </div>
+
+
+                <div class="atendimento-campo">
+
+                    <label for="atendimentoPonto">
+                        🛣️ Ponto
+                    </label>
+
+                    <input
+                        type="text"
+                        id="atendimentoPonto"
+                        placeholder="Ex.: DER777">
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- CAMINHÃO 01 -->
+
+                <div class="atendimento-campo">
+
+                    <label>
+                        🚛 Caminhão 01
+                    </label>
+
+                    <div
+                        class="atendimento-tecnicos"
+                        data-grupo="caminhao1">
+                    </div>
+
+                </div>
+
+
+                <div class="atendimento-campo">
+
+                    <label for="atendimentoRodovia1">
+                        🛣️ Rodovia, Ponto e Serviço
+                    </label>
+
+                    <input
+                        type="text"
+                        id="atendimentoRodovia1"
+                        placeholder="Ex.: IMPLANTAÇÃO DER777">
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- CAMINHÃO 02 -->
+
+                <div class="atendimento-campo">
+
+                    <label>
+                        🚛 Caminhão 02
+                    </label>
+
+                    <div
+                        class="atendimento-tecnicos"
+                        data-grupo="caminhao2">
+                    </div>
+
+                </div>
+
+
+                <div class="atendimento-campo">
+
+                    <label for="atendimentoRodovia2">
+                        🛣️ Rodovia, Ponto e Serviço
+                    </label>
+
+                    <input
+                        type="text"
+                        id="atendimentoRodovia2"
+                        placeholder="Digite a informação">
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- FIORINO -->
+
+                <div class="atendimento-campo">
+
+                    <label>
+                        🚐 Fiorino
+                    </label>
+
+                    <div
+                        class="atendimento-tecnicos"
+                        data-grupo="fiorino">
+                    </div>
+
+                </div>
+
+
+                <div class="atendimento-campo">
+
+                    <label for="atendimentoRodovia3">
+                        🛣️ Rodovia, Ponto e Serviço
+                    </label>
+
+                    <input
+                        type="text"
+                        id="atendimentoRodovia3"
+                        placeholder="Ex.: DF-001">
+
+                </div>
+
+
+                <!-- BOTÕES -->
+
+                <div class="atendimento-botoes">
+
+                    <button
+                        type="button"
+                        class="btn-whatsapp"
+                        onclick="enviarWhatsApp()">
+
+                        📱 ENVIAR WHATSAPP
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn-copiar"
+                        onclick="copiarMensagem()">
+
+                        📋 COPIAR MENSAGEM
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn-limpar"
+                        onclick="limparFormularioAtendimento()">
+
+                        🗑️ LIMPAR
+
+                    </button>
+
+                </div>
+
+
+                <!-- PREVIEW -->
+
+                <div class="atendimento-preview">
+
+                    <h2>
+                        👀 Visualização da mensagem
+                    </h2>
+
+                    <textarea
+                        id="mensagemPreview"
+                        readonly>
+                    </textarea>
+
+
+                    <div class="atendimento-aviso">
+
+                        <strong>
+                            Como funciona:
+                        </strong>
+
+                        o botão do WhatsApp abre uma conversa
+                        no WhatsApp com a mensagem já preenchida.
+                        Você escolhe o contato ou grupo
+                        e toca em enviar.
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         TELA — PROGRAMAÇÃO / RELATÓRIO A4
+         ========================================================= -->
+
+    <section
+        id="telaProgramacao"
+        class="tela">
+
+
+        <div class="programacao-navegacao">
+
+            <button
+                type="button"
+                class="botao-voltar"
+                onclick="abrirTela('telaInicio')">
+
+                ← Voltar ao início
+
+            </button>
+
+        </div>
+
+
+        <div class="programacao-area">
+
+
+            <!-- CABEÇALHO -->
+
+            <div class="programacao-cabecalho">
+
+
+                <div class="programacao-logo">
+
+                    <img
+                        src="inmetro.png"
+                        alt="Logo do INMETRO">
+
+                </div>
+
+
+                <div class="programacao-dados-cabecalho">
+
+                    <div>
+                        SUR-GO DF
+                    </div>
+
+                    <div>
+                        INSTITUTO NACIONAL DE METROLOGIA,
+                        QUALIDADE E TECNOLOGIA
+                    </div>
+
+                    <div>
+                        End.: CENTRO EMPRESARIAL PARQUE BRASÍLIA
+                        SIG QD. 1, BL. A, LT. 955,
+                        CEP: 70610-410
+                    </div>
+
+                    <div>
+                        BRASÍLIA-DF
+                    </div>
+
+                    <div>
+                        TELEFONE:
+                        (61) 3348-6300 /
+                        3348-6320
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="programacao-titulo">
+
+                RASCUNHO DE RELATÓRIO
+                MEDIDORES DE VELOCIDADE
+                PARA VEÍCULOS AUTOMOTIVOS
+
+            </div>
+
+
+            <!-- DADOS -->
+
+            <table class="programacao-info">
+
+                <tr>
+
+                    <td colspan="3">
+
+                        Razão Social:
+                        TALENTECH TECNOLOGIA LTDA
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td colspan="3">
+
+                        Tipo de serviço metrológico:
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+            <!-- TIPO DE SERVIÇO -->
+
+            <table class="programacao-servico">
+
+                <tr>
+
+                    <td>
+
+                        <label>
+
+                            <input
+                                class="programacao-radio"
+                                type="radio"
+                                name="tipoServico"
+                                value="inicial">
+
+                            Verificação Inicial
+
+                        </label>
+
+
+                        <br>
+
+
+                        <label>
+
+                            <input
+                                class="programacao-radio"
+                                type="radio"
+                                name="tipoServico"
+                                value="periodica">
+
+                            Verificação Periódica
+
+                        </label>
+
+                    </td>
+
+
+                    <td>
+
+                        <label>
+
+                            <input
+                                class="programacao-radio"
+                                type="radio"
+                                name="tipoServico"
+                                value="reparo">
+
+                            Verificação Após reparo
+
+                        </label>
+
+
+                        <br>
+
+
+                        <label>
+
+                            <input
+                                class="programacao-radio"
+                                type="radio"
+                                name="tipoServico"
+                                value="inspecao">
+
+                            Inspeção Metrológica
+
+                        </label>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+            <!-- LOCAL -->
+
+            <table class="programacao-info">
+
+
+                <tr>
+
+                    <td colspan="3">
+
+                        Local de execução do serviço metrológico
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td colspan="3">
+
+                        Endereço:
+
+                        <input
+                            class="programacao-editavel programacao-endereco"
+                            type="text"
+                            placeholder="DIGITE O ENDEREÇO">
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td colspan="3">
+
+                        Sentido:
+
+                        <input
+                            class="programacao-editavel programacao-sentido"
+                            type="text"
+                            placeholder="DIGITE O SENTIDO">
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td colspan="3">
+
+                        Identificação do Ponto:
+
+                        <input
+                            class="programacao-editavel programacao-ponto"
+                            type="text"
+                            placeholder="DIGITE A IDENTIFICAÇÃO DO PONTO">
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td colspan="3">
+
+                        N.º portaria de aprovação:
+                        228/2018
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+
+                        Marca:
+                        ENGEBRAS
+
+                    </td>
+
+
+                    <td>
+
+                        Modelo:
+                        MMV 544
+
+                    </td>
+
+
+                    <td>
+
+                        N.º série:
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td colspan="3">
+
+                        Nº Lacre:
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+
+                    <td>
+
+                        Nº INMETRO:
+
+                    </td>
+
+
+                    <td>
+
+                        Velocidade Nominal (km):
+
+                        <input
+                            class="programacao-editavel programacao-velocidade"
+                            type="text"
+                            placeholder="00"
+                            maxlength="2">
+
+                        Km/h
+
+                    </td>
+
+
+                    <td>
+
+                        Faixa:
+
+                        <input
+                            class="programacao-editavel programacao-faixa"
+                            type="text"
+                            placeholder="00"
+                            maxlength="2">
+
+                        CDF/
+
+                        <input
+                            class="programacao-editavel programacao-cdf"
+                            type="text"
+                            placeholder="000"
+                            maxlength="3">
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+            <!-- CONFORMIDADE -->
+
+            <table class="programacao-servico">
+
+                <tr>
+
+                    <td>
+
+                        <b>
+                            Modelo conforme caderno de componentes
+                        </b>
+
+                    </td>
+
+
+                    <td>
+
+                        <span>
+                            (___) SIM&nbsp;&nbsp;
+                            (___) NÃO&nbsp;&nbsp;
+                            (___) Não aplicável
+                        </span>
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+
+                        <b>
+                            Modelo conforme portaria de aprovação e aditivos
+                        </b>
+
+                    </td>
+
+
+                    <td>
+
+                        <span>
+                            (___) SIM&nbsp;&nbsp;
+                            (___) NÃO
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+            <!-- ENSAIO -->
+
+            <div class="programacao-ensaio">
+
+
+                <div class="programacao-ensaio-titulo">
+
+                    Ensaio de campo
+
+                </div>
+
+
+                <table>
+
+
+                    <tr>
+
+                        <th style="width: 25%;">
+                            Medições
+                        </th>
+
+                        <th style="width: 25%;">
+                            Velocidade do Padrão (P)
+                        </th>
+
+                        <th style="width: 25%;">
+                            Velocidade Registrada (R)
+                        </th>
+
+                        <th style="width: 25%;">
+                            Velocidade Indicada (I)
+                        </th>
+
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+                </table>
+
+            </div>
+
+
+            <!-- HORÁRIOS -->
+
+            <table class="programacao-inferior">
+
+
+                <tr>
+
+                    <td style="width: 33.33%;">
+
+                        HORA DE SAÍDA:
+                        ______:______
+
+                        <br><br>
+
+                        HORA DE CHEGADA:
+                        ______:______
+
+                    </td>
+
+
+                    <td style="width: 33.33%;">
+
+                        DATA:
+                        ______/______/__________
+
+                        <br><br>
+
+                        INÍCIO:
+                        ______:______
+
+                        <br><br>
+
+                        TÉRMINO:
+                        ______:______
+
+                    </td>
+
+
+                    <td style="width: 33.34%;">
+
+                        PLACA:
+                        ____________________
+
+                        <br><br>
+
+                        km SAÍDA:
+                        _________________
+
+                        <br><br>
+
+                        km CHEGADA:
+                        _____________
+
+                    </td>
+
+                </tr>
+
+
+            </table>
+
+
+            <!-- PESSOAL -->
+
+            <table class="programacao-pessoas">
+
+
+                <tr>
+
+                    <td>
+                        Metrologista:
+                    </td>
+
+                    <td>
+                        Matrícula nº:
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Auxiliar:
+                    </td>
+
+                    <td>
+                        Matrícula nº:
+                    </td>
+
+                </tr>
+
+
+            </table>
+
+
+            <!-- APROVAÇÃO -->
+
+            <div class="programacao-aprovacao">
+
+
+                <div>
+
+                    (___) Aprovado
+
+                </div>
+
+
+                <div>
+
+                    (___) Reprovado
+
+                </div>
+
+
+            </div>
+
+
+            <!-- OBSERVAÇÕES -->
+
+            <div class="programacao-observacoes">
+
+                <b>
+                    Observações:
+                </b>
+
+            </div>
+
+
+            <!-- BOTÃO -->
+
+            <div class="programacao-botoes">
+
+                <button
+                    type="button"
+                    onclick="validarEImprimir()">
+
+                    🖨️ IMPRIMIR / SALVAR PDF
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
+    <script>
+
+
+        /* =========================================================
+           NAVEGAÇÃO
+           ========================================================= */
+
+        function abrirTela(idTela) {
+
+            document
+                .querySelectorAll(".tela")
+                .forEach(function(tela) {
+
+                    tela.classList.remove("ativa");
+
+                });
+
+
+            const tela =
+                document.getElementById(idTela);
+
+
+            if (!tela) {
+                return;
+            }
+
+
+            tela.classList.add("ativa");
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+
+        /* =========================================================
+           DADOS DOS TÉCNICOS
+           ========================================================= */
+
+        const tecnicosPorGrupo = {
+
+            cdf: [
+
+                "Tomé",
+                "Jovailson",
+                "Hérico",
+                "Abimael",
+                "Adeilson",
+                "Robson",
+                "Raimundo",
+                "Miguel",
+                "Tomé"
+
+            ],
+
+
+            cn2: [
+
+                "Jovailson",
+                "Tomé",
+                "Adeilson"
+
+            ],
+
+
+            afericao: [
+
+                "Raimundo",
+                "Miguel",
+                "Wanderson",
+                "Robson",
+                "Jovailson"
+
+            ],
+
+
+            atualizacaoCaixa: [
+
+                "Robson",
+                "Alessandro",
+                "Wanderson"
+
+            ],
+
+
+            caminhao1: [
+
+                "Elder",
+                "Maciel",
+                "Willian",
+                "Braulio",
+                "Adeilson",
+                "Hérico",
+                "Jesser"
+
+            ],
+
+
+            caminhao2: [
+
+                "Elder",
+                "Maciel",
+                "Willian",
+                "Braulio",
+                "Adeilson",
+                "Hérico",
+                "Jesser"
+
+            ],
+
+
+            fiorino: [
+
+                "André",
+                "Maciel"
+
+            ]
+
+        };
+
+
+
+        /* =========================================================
+           CRIAR CHECKBOXES DOS TÉCNICOS
+           ========================================================= */
+
+        function criarCheckboxesAtendimento() {
+
+            const grupos =
+                document.querySelectorAll(
+                    "#telaAtendimento .atendimento-tecnicos"
+                );
+
+
+            grupos.forEach(function(grupo) {
+
+                const nomeGrupo =
+                    grupo.dataset.grupo;
+
+
+                const listaTecnicos =
+                    tecnicosPorGrupo[nomeGrupo] || [];
+
+
+                listaTecnicos.forEach(function(nome) {
+
+                    criarTecnico(
+                        grupo,
+                        nome,
+                        nomeGrupo,
+                        false
+                    );
+
+                });
+
+
+                criarTecnico(
+                    grupo,
+                    "Outros",
+                    nomeGrupo,
+                    true
+                );
+
+            });
+
+        }
+
+
+
+        /* =========================================================
+           CRIA UM TÉCNICO
+           ========================================================= */
+
+        function criarTecnico(
+            grupo,
+            nome,
+            nomeGrupo,
+            ehOutros
+        ) {
+
+            const label =
+                document.createElement("label");
+
+
+            label.className =
+                "atendimento-tecnico";
+
+
+            const checkbox =
+                document.createElement("input");
+
+
+            checkbox.type =
+                "checkbox";
+
+
+            checkbox.value =
+                nome;
+
+
+            checkbox.dataset.grupo =
+                nomeGrupo;
+
+
+            const texto =
+                document.createTextNode(nome);
+
+
+            label.appendChild(
+                checkbox
+            );
+
+
+            label.appendChild(
+                texto
+            );
+
+
+            grupo.appendChild(
+                label
+            );
+
+
+            let campoOutros = null;
+
+
+            if (ehOutros) {
+
+                campoOutros =
+                    document.createElement("input");
+
+
+                campoOutros.type =
+                    "text";
+
+
+                campoOutros.className =
+                    "atendimento-outros";
+
+
+                campoOutros.placeholder =
+                    "Digite o nome de outro técnico";
+
+
+                campoOutros.dataset.grupo =
+                    nomeGrupo;
+
+
+                grupo.appendChild(
+                    campoOutros
+                );
+
+            }
+
+
+            checkbox.addEventListener(
+                "change",
+                function() {
+
+                    if (checkbox.checked) {
+
+                        label.classList.add(
+                            "selecionado"
+                        );
+
+                    } else {
+
+                        label.classList.remove(
+                            "selecionado"
+                        );
+
+                    }
+
+
+                    if (ehOutros && campoOutros) {
+
+                        if (checkbox.checked) {
+
+                            campoOutros.classList.add(
+                                "mostrar"
+                            );
+
+                        } else {
+
+                            campoOutros.classList.remove(
+                                "mostrar"
+                            );
+
+                            campoOutros.value = "";
+
+                        }
+
+                    }
+
+
+                    gerarMensagem();
+
+                }
+            );
+
+
+            if (campoOutros) {
+
+                campoOutros.addEventListener(
+                    "input",
+                    gerarMensagem
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================================================
+           TÉCNICOS SELECIONADOS
+           ========================================================= */
+
+        function tecnicosSelecionados(grupo) {
+
+            const checkboxes =
+                document.querySelectorAll(
+                    `#telaAtendimento input[type="checkbox"][data-grupo="${grupo}"]:checked`
+                );
+
+
+            const nomes = [];
+
+
+            checkboxes.forEach(function(checkbox) {
+
+
+                if (checkbox.value === "Outros") {
+
+                    const campoOutros =
+                        document.querySelector(
+                            `#telaAtendimento .atendimento-outros[data-grupo="${grupo}"]`
+                        );
+
+
+                    if (
+                        campoOutros &&
+                        campoOutros.value.trim()
+                    ) {
+
+                        nomes.push(
+                            campoOutros.value.trim()
+                        );
+
+                    }
+
+                } else {
+
+                    nomes.push(
+                        checkbox.value
+                    );
+
+                }
+
+            });
+
+
+            return nomes.join(", ");
+
+        }
+
+
+
+        /* =========================================================
+           DATA ATUAL
+           ========================================================= */
+
+        function colocarDataAtualAtendimento() {
+
+            const hoje =
+                new Date();
+
+
+            const ano =
+                hoje.getFullYear();
+
+
+            const mes =
+                String(
+                    hoje.getMonth() + 1
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const dia =
+                String(
+                    hoje.getDate()
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            document.getElementById(
+                "atendimentoData"
+            ).value =
+                `${ano}-${mes}-${dia}`;
+
+        }
+
+
+
+        /* =========================================================
+           DIA DA SEMANA
+           ========================================================= */
+
+        function nomeDiaSemana(data) {
+
+            const dias = [
+
+                "DOMINGO",
+                "SEGUNDA FEIRA",
+                "TERÇA FEIRA",
+                "QUARTA FEIRA",
+                "QUINTA FEIRA",
+                "SEXTA FEIRA",
+                "SÁBADO"
+
+            ];
+
+
+            const dataObj =
+                new Date(
+                    data + "T00:00:00"
+                );
+
+
+            return dias[
+                dataObj.getDay()
+            ];
+
+        }
+
+
+
+        /* =========================================================
+           FORMATAR DATA
+           ========================================================= */
+
+        function formatarData(data) {
+
+            if (!data) {
+
+                return "";
+
+            }
+
+
+            const partes =
+                data.split("-");
+
+
+            return (
+                partes[2] +
+                "/" +
+                partes[1] +
+                "/" +
+                partes[0]
+            );
+
+        }
+
+
+
+        /* =========================================================
+           VALOR DO CAMPO
+           ========================================================= */
+
+        function valorAtendimento(id) {
+
+            const elemento =
+                document.getElementById(id);
+
+
+            if (!elemento) {
+
+                return "";
+
+            }
+
+
+            return elemento.value.trim();
+
+        }
+
+
+
+        /* =========================================================
+           GERAR MENSAGEM
+           ========================================================= */
+
+        function gerarMensagem() {
+
+            const data =
+                valorAtendimento(
+                    "atendimentoData"
+                );
+
+
+            let mensagem = "";
+
+
+            if (data) {
+
+                mensagem +=
+                    "*" +
+                    nomeDiaSemana(data) +
+                    ", " +
+                    formatarData(data) +
+                    "*" +
+                    "\n";
+
+            }
+
+
+            mensagem +=
+                "*ATENDIMENTO CDF:* " +
+                tecnicosSelecionados("cdf") +
+                "\n";
+
+
+            mensagem +=
+                "*ATENDIMENTO CN2:* " +
+                tecnicosSelecionados("cn2") +
+                "\n";
+
+
+            mensagem +=
+                "*AFERIÇÃO:* " +
+                tecnicosSelecionados("afericao") +
+                "\n";
+
+
+            mensagem +=
+                "*PONTO E SERVIÇO:* " +
+                valorAtendimento(
+                    "atendimentoPontoServico"
+                ) +
+                "\n";
+
+
+            mensagem +=
+                "*ATUALIZAÇÃO DE CAIXA:* " +
+                tecnicosSelecionados(
+                    "atualizacaoCaixa"
+                ) +
+                "\n";
+
+
+            mensagem +=
+                "*PONTO:* " +
+                valorAtendimento(
+                    "atendimentoPonto"
+                ) +
+                "\n";
+
+
+            mensagem +=
+                "*CAMINHÃO 01:* " +
+                tecnicosSelecionados(
+                    "caminhao1"
+                ) +
+                "\n";
+
+
+            mensagem +=
+                "*RODOVIA, PONTO E SERVIÇO:* " +
+                valorAtendimento(
+                    "atendimentoRodovia1"
+                ) +
+                "\n";
+
+
+            mensagem +=
+                "*CAMINHÃO 02:* " +
+                tecnicosSelecionados(
+                    "caminhao2"
+                ) +
+                "\n";
+
+
+            mensagem +=
+                "*RODOVIA, PONTO E SERVIÇO:* " +
+                valorAtendimento(
+                    "atendimentoRodovia2"
+                ) +
+                "\n";
+
+
+            mensagem +=
+                "*FIORINO:* " +
+                tecnicosSelecionados(
+                    "fiorino"
+                ) +
+                "\n";
+
+
+            mensagem +=
+                "*RODOVIA, PONTO E SERVIÇO:* " +
+                valorAtendimento(
+                    "atendimentoRodovia3"
+                );
+
+
+            document.getElementById(
+                "mensagemPreview"
+            ).value =
+                mensagem;
+
+
+            return mensagem;
+
+        }
+
+
+
+        /* =========================================================
+           ENVIO WHATSAPP
+           ========================================================= */
+
+        function enviarWhatsApp() {
+
+            const mensagem =
+                gerarMensagem();
+
+
+            if (!mensagem.trim()) {
+
+                alert(
+                    "Preencha os dados antes de enviar."
+                );
+
+                return;
+
+            }
+
+
+            const textoCodificado =
+                encodeURIComponent(
+                    mensagem
+                );
+
+
+            const url =
+                "https://wa.me/?text=" +
+                textoCodificado;
+
+
+            window.open(
+                url,
+                "_blank"
+            );
+
+        }
+
+
+
+        /* =========================================================
+           COPIAR
+           ========================================================= */
+
+        async function copiarMensagem() {
+
+            const mensagem =
+                gerarMensagem();
+
+
+            try {
+
+                await navigator
+                    .clipboard
+                    .writeText(
+                        mensagem
+                    );
+
+
+                alert(
+                    "Mensagem copiada com sucesso!"
+                );
+
+            } catch (erro) {
+
+                alert(
+                    "Não foi possível copiar automaticamente. " +
+                    "Selecione a mensagem e copie manualmente."
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================================================
+           LIMPAR ATENDIMENTO
+           ========================================================= */
+
+        function limparFormularioAtendimento() {
+
+            const confirmar =
+                confirm(
+                    "Deseja realmente limpar todos os campos?"
+                );
+
+
+            if (!confirmar) {
+
+                return;
+
+            }
+
+
+            document
+                .querySelectorAll(
+                    "#telaAtendimento input[type='text']"
+                )
+                .forEach(function(campo) {
+
+                    campo.value = "";
+
+                });
+
+
+            document
+                .querySelectorAll(
+                    "#telaAtendimento input[type='checkbox']"
+                )
+                .forEach(function(checkbox) {
+
+                    checkbox.checked =
+                        false;
+
+
+                    const label =
+                        checkbox.closest(
+                            ".atendimento-tecnico"
+                        );
+
+
+                    if (label) {
+
+                        label.classList.remove(
+                            "selecionado"
+                        );
+
+                    }
+
+                });
+
+
+            document
+                .querySelectorAll(
+                    "#telaAtendimento .atendimento-outros"
+                )
+                .forEach(function(campo) {
+
+                    campo.value = "";
+
+                    campo.classList.remove(
+                        "mostrar"
+                    );
+
+                });
+
+
+            colocarDataAtualAtendimento();
+
+
+            gerarMensagem();
+
+        }
+
+
+
+        /* =========================================================
+           CAMPOS DO RELATÓRIO A4
+           ========================================================= */
+
+        function prepararCamposProgramacao() {
+
+            document
+                .querySelectorAll(
+                    "#telaProgramacao .programacao-editavel"
+                )
+                .forEach(function(campo) {
+
+                    campo.addEventListener(
+                        "input",
+                        function() {
+
+                            this.value =
+                                this.value.toUpperCase();
+
+
+                            this.classList.remove(
+                                "programacao-campo-incompleto"
+                            );
+
+                        }
+                    );
+
+                });
+
+        }
+
+
+
+        /* =========================================================
+           VALIDAR CAMPOS A4
+           ========================================================= */
+
+        function validarCamposProgramacao() {
+
+            const campos = [
+
+                {
+                    elemento:
+                        document.querySelector(
+                            ".programacao-endereco"
+                        ),
+                    nome:
+                        "Endereço"
+                },
+
+
+                {
+                    elemento:
+                        document.querySelector(
+                            ".programacao-sentido"
+                        ),
+                    nome:
+                        "Sentido"
+                },
+
+
+                {
+                    elemento:
+                        document.querySelector(
+                            ".programacao-ponto"
+                        ),
+                    nome:
+                        "Identificação do Ponto"
+                },
+
+
+                {
+                    elemento:
+                        document.querySelector(
+                            ".programacao-velocidade"
+                        ),
+                    nome:
+                        "Velocidade Nominal"
+                },
+
+
+                {
+                    elemento:
+                        document.querySelector(
+                            ".programacao-faixa"
+                        ),
+                    nome:
+                        "Faixa"
+                },
+
+
+                {
+                    elemento:
+                        document.querySelector(
+                            ".programacao-cdf"
+                        ),
+                    nome:
+                        "CDF"
+                }
+
+            ];
+
+
+            const camposVazios = [];
+
+
+            campos.forEach(function(campo) {
+
+                if (!campo.elemento) {
+
+                    return;
+
+                }
+
+
+                const valor =
+                    campo.elemento.value.trim();
+
+
+                if (valor === "") {
+
+                    campo.elemento.classList.add(
+                        "programacao-campo-incompleto"
+                    );
+
+
+                    camposVazios.push(
+                        campo
+                    );
+
+                } else {
+
+                    campo.elemento.classList.remove(
+                        "programacao-campo-incompleto"
+                    );
+
+                }
+
+            });
+
+
+            return camposVazios;
+
+        }
+
+
+
+        /* =========================================================
+           VALIDAR TIPO DE SERVIÇO
+           ========================================================= */
+
+        function validarTipoServico() {
+
+            return (
+                document.querySelector(
+                    '#telaProgramacao input[name="tipoServico"]:checked'
+                ) !== null
+            );
+
+        }
+
+
+
+        /* =========================================================
+           IMPRIMIR
+           ========================================================= */
+
+        function validarEImprimir() {
+
+            const tipoServicoValido =
+                validarTipoServico();
+
+
+            const camposVazios =
+                validarCamposProgramacao();
+
+
+            if (
+                !tipoServicoValido ||
+                camposVazios.length > 0
+            ) {
+
+                let mensagem =
+                    "ATENÇÃO!\n\n";
+
+
+                if (!tipoServicoValido) {
+
+                    mensagem +=
+                        "• Selecione o tipo de serviço metrológico.\n";
+
+                }
+
+
+                if (camposVazios.length > 0) {
+
+                    mensagem +=
+                        "\nCampos que precisam ser preenchidos:\n";
+
+
+                    camposVazios.forEach(
+                        function(campo) {
+
+                            mensagem +=
+                                "• " +
+                                campo.nome +
+                                "\n";
+
+                        }
+                    );
+
+                }
+
+
+                mensagem +=
+                    "\nPreencha todas as informações obrigatórias antes de imprimir.";
+
+
+                alert(
+                    mensagem
+                );
+
+
+                if (!tipoServicoValido) {
+
+                    const primeiroRadio =
+                        document.querySelector(
+                            '#telaProgramacao input[name="tipoServico"]'
+                        );
+
+
+                    if (primeiroRadio) {
+
+                        primeiroRadio.focus();
+
+                    }
+
+                } else if (
+                    camposVazios.length > 0
+                ) {
+
+                    camposVazios[0]
+                        .elemento
+                        .focus();
+
+                }
+
+
+                return;
+
+            }
+
+
+            window.print();
+
+        }
+
+
+
+        /* =========================================================
+           ATUALIZAÇÃO AUTOMÁTICA DO RELATÓRIO
+           ========================================================= */
+
+        document.addEventListener(
+            "input",
+            function(event) {
+
+                if (
+                    event.target.closest(
+                        "#telaAtendimento"
+                    )
+                ) {
+
+                    gerarMensagem();
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================================
+           INICIALIZAÇÃO
+           ========================================================= */
+
+        criarCheckboxesAtendimento();
+
+        colocarDataAtualAtendimento();
+
+        prepararCamposProgramacao();
+
+        gerarMensagem();
+
+
+    </script>
+
+
+</body>
+
+</html>
