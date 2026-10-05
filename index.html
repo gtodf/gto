@@ -91,10 +91,43 @@
 
         }
 
+        /* =========================================================
+           LOGO GTO
+           ========================================================= */
+
+.logo {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: white;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.25);
+
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
 
         /* =========================================================
            TELA INICIAL
            ========================================================= */
+
+           
 
         #telaInicio {
 
@@ -1375,18 +1408,10 @@
         <div class="inicio-container">
 
 
-            <div class="inicio-logo">
+<div class="logo">
+    <img src="logogto.png" alt="Logo GTO">
+</div>
 
-                <span>
-                    GTO
-                </span>
-
-            </div>
-
-
-            <h1 class="inicio-titulo">
-                GTO
-            </h1>
 
 
             <p class="inicio-subtitulo">
