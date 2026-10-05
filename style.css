@@ -1,0 +1,1200 @@
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #075e54
+        );
+
+    color: #1e293b;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   TELAS
+   ========================================================= */
+
+.tela {
+    display: none;
+    min-height: 100vh;
+}
+
+.tela.ativa {
+    display: block;
+    animation: aparecerTela 0.25s ease;
+}
+
+@keyframes aparecerTela {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo {
+    width: min(380px, 90vw);
+    height: 220px;
+
+    margin: 0 auto 20px;
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #fff;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* =========================================================
+   TELA INICIAL
+   ========================================================= */
+
+#telaInicio {
+    display: none;
+
+    min-height: 100vh;
+
+    padding: 20px;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+#telaInicio.ativa {
+    display: flex;
+}
+
+.inicio-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.inicio-titulo {
+    font-size: 38px;
+    margin-bottom: 8px;
+
+    color: #fff;
+    font-weight: 800;
+}
+
+.inicio-subtitulo {
+    color: #d1fae5;
+
+    font-size: 16px;
+
+    margin-bottom: 40px;
+}
+
+.inicio-menu {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.inicio-card {
+    width: 100%;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.97
+        );
+
+    color: #1e293b;
+
+    padding: 30px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    text-decoration: none;
+
+    display: block;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.15);
+}
+
+.inicio-card:hover {
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(0, 0, 0, 0.25);
+}
+
+.inicio-icone {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 34px;
+
+    background: #dcfce7;
+}
+
+.inicio-card h2 {
+    font-size: 21px;
+    margin-bottom: 8px;
+
+    color: #0f172a;
+}
+
+.inicio-card p {
+    font-size: 14px;
+
+    color: #64748b;
+
+    line-height: 1.5;
+}
+
+.inicio-footer {
+    margin-top: 35px;
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   BOTÃO VOLTAR
+   ========================================================= */
+
+.botao-voltar {
+    border: none;
+
+    background: #0f766e;
+
+    color: #fff;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+
+    transition: 0.2s;
+}
+
+.botao-voltar:hover {
+    background: #115e59;
+
+    transform:
+        translateX(-2px);
+}
+
+
+/* =========================================================
+   ATENDIMENTO
+   ========================================================= */
+
+#telaAtendimento {
+    background: #f1f5f9;
+
+    min-height: 100vh;
+
+    padding: 20px;
+}
+
+.atendimento-container {
+    max-width: 900px;
+
+    margin: 0 auto;
+}
+
+.atendimento-cabecalho {
+    background: #075e54;
+
+    color: white;
+
+    padding: 25px;
+
+    border-radius:
+        15px 15px 0 0;
+
+    text-align: center;
+}
+
+.atendimento-cabecalho h1 {
+    margin: 0 0 8px;
+
+    font-size: 26px;
+}
+
+.atendimento-cabecalho p {
+    margin: 0;
+
+    opacity: 0.9;
+}
+
+.atendimento-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius:
+        0 0 15px 15px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.08);
+}
+
+.atendimento-campo {
+    margin-bottom: 18px;
+}
+
+.atendimento-campo > label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    color: #334155;
+}
+
+
+/* =========================================================
+   BLOCO DOS TÉCNICOS + CAMPO
+   ========================================================= */
+
+.atendimento-bloco {
+    width: 100%;
+
+    background: #075e54;
+
+    border: 1px solid #064e46;
+
+    border-radius: 12px;
+
+    padding: 12px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   GRADE DOS TÉCNICOS
+   ========================================================= */
+
+.atendimento-tecnicos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(150px, 1fr)
+        );
+
+    gap: 8px;
+}
+
+
+/* =========================================================
+   CADA TÉCNICO
+   ========================================================= */
+
+.atendimento-tecnico {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 42px;
+
+    padding: 9px 12px;
+
+    background: #fff;
+
+    border:
+        1px solid #dbe3ea;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: normal;
+
+    transition:
+        background 0.2s,
+        border-color 0.2s,
+        transform 0.15s;
+}
+
+.atendimento-tecnico:hover {
+    background: #ecfdf5;
+
+    border-color: #25d366;
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+.atendimento-tecnico input[type="checkbox"] {
+    flex: 0 0 auto;
+
+    width: 18px;
+    height: 18px;
+
+    margin: 0;
+
+    cursor: pointer;
+
+    accent-color: #075e54;
+}
+
+
+/* =========================================================
+   NOME DO TÉCNICO
+   ========================================================= */
+
+.atendimento-tecnico {
+    gap: 12px;
+}
+
+.atendimento-tecnico input[type="checkbox"] + * {
+    margin-left: 2px;
+}
+
+
+/* =========================================================
+   SELECIONADO
+   ========================================================= */
+
+.atendimento-tecnico.selecionado {
+    background: #dcfce7;
+
+    border-color: #25d366;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   CAMPO DE TEXTO DENTRO DO BLOCO
+   ========================================================= */
+
+.atendimento-campo-bloco {
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 12px 14px;
+
+    background: #fff;
+
+    color: #1e293b;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.atendimento-campo-bloco:focus {
+    border-color: #25d366;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(
+            37,
+            211,
+            102,
+            0.15
+        );
+}
+
+.atendimento-campo-bloco::placeholder {
+    color: #64748b;
+}
+
+
+/* =========================================================
+   INPUTS NORMAIS
+   ========================================================= */
+
+.atendimento-card input[type="text"],
+.atendimento-card input[type="date"],
+.atendimento-card textarea {
+    width: 100%;
+
+    padding: 12px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.atendimento-card input[type="text"]:focus,
+.atendimento-card input[type="date"]:focus,
+.atendimento-card textarea:focus {
+    border-color: #075e54;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(
+            7,
+            94,
+            84,
+            0.1
+        );
+}
+
+
+/* =========================================================
+   OUTROS
+   ========================================================= */
+
+.atendimento-outros {
+    grid-column: 1 / -1;
+
+    display: none;
+}
+
+.atendimento-outros.mostrar {
+    display: block;
+}
+
+
+/* =========================================================
+   LINHA
+   ========================================================= */
+
+.atendimento-card hr {
+    border: none;
+
+    border-top:
+        1px solid #e2e8f0;
+
+    margin:
+        25px 0;
+}
+
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+
+.atendimento-botoes {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.atendimento-botoes button {
+    border: none;
+
+    border-radius: 9px;
+
+    padding: 14px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.atendimento-botoes button:hover {
+    transform:
+        translateY(-1px);
+
+    opacity: 0.92;
+}
+
+.btn-whatsapp {
+    background: #25d366;
+    color: white;
+}
+
+.btn-copiar {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-limpar {
+    background: #64748b;
+    color: white;
+}
+
+
+/* =========================================================
+   PREVIEW
+   ========================================================= */
+
+.atendimento-preview {
+    margin-top: 25px;
+}
+
+.atendimento-preview h2 {
+    font-size: 19px;
+
+    margin-bottom: 10px;
+}
+
+#mensagemPreview {
+    width: 100%;
+
+    min-height: 300px;
+
+    background: #f8fafc;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 10px;
+
+    padding: 15px;
+
+    resize: vertical;
+
+    white-space: pre-wrap;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+.atendimento-aviso {
+    margin-top: 15px;
+
+    padding: 12px;
+
+    background: #ecfdf5;
+
+    border-left:
+        4px solid #25d366;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   PROGRAMAÇÃO A4
+   ========================================================= */
+
+#telaProgramacao {
+    min-height: 100vh;
+
+    background: #ddd;
+
+    padding: 20px;
+
+    color: #000;
+}
+
+.programacao-area {
+    width: 210mm;
+
+    min-height: 297mm;
+
+    margin: 0 auto;
+
+    padding:
+        9mm 13mm 8mm;
+
+    background: #fff;
+
+    overflow: hidden;
+
+    font-family:
+        "Times New Roman",
+        Times,
+        serif;
+
+    font-size: 11px;
+}
+
+.programacao-navegacao {
+    width: 210mm;
+
+    margin: 0 auto;
+}
+
+.programacao-area table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+.programacao-area td,
+.programacao-area th {
+    border:
+        0.25mm solid #111;
+
+    padding:
+        1mm 1.2mm;
+
+    font-size: 11px;
+
+    line-height: 1.05;
+
+    vertical-align: middle;
+}
+
+.programacao-cabecalho {
+    height: 29mm;
+
+    position: relative;
+}
+
+.programacao-logo {
+    position: absolute;
+
+    left: 5mm;
+    top: -1mm;
+
+    width: 22mm;
+}
+
+.programacao-logo img {
+    max-width: 22mm;
+    max-height: 20mm;
+
+    display: block;
+
+    margin:
+        2.55mm auto;
+}
+
+.programacao-dados-cabecalho {
+    position: absolute;
+
+    left: 29mm;
+    top: 0;
+
+    font-size: 11px;
+
+    line-height: 1.25;
+
+    white-space: nowrap;
+}
+
+.programacao-titulo {
+    text-align: center;
+
+    font-size: 11.5px;
+
+    font-weight: bold;
+
+    margin-bottom: 1mm;
+}
+
+.programacao-info td {
+    height: 6.25mm;
+}
+
+.programacao-servico td {
+    height: 7mm;
+}
+
+.programacao-radio {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 3.5mm;
+    height: 3.5mm;
+
+    border:
+        0.25mm solid #000;
+
+    border-radius: 50%;
+
+    margin:
+        1mm 1mm 0 0;
+
+    padding: 0;
+
+    vertical-align: -0.7mm;
+
+    background: #fff;
+
+    position: relative;
+}
+
+.programacao-radio:checked {
+    box-shadow:
+        inset 0 0 0 0.9mm #ff0000;
+}
+
+.programacao-editavel {
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: red;
+
+    font-family: inherit;
+
+    font-size: inherit;
+
+    padding: 0;
+    margin: 0;
+
+    text-transform: uppercase;
+}
+
+.programacao-editavel::placeholder {
+    color: #cc0000;
+
+    opacity: 0.7;
+}
+
+.programacao-editavel:focus {
+    background: #fff0f0;
+
+    box-shadow:
+        inset 0 -0.3mm red;
+}
+
+.programacao-endereco {
+    width: 150mm;
+}
+
+.programacao-sentido {
+    width: 150mm;
+}
+
+.programacao-ponto {
+    width: 100mm;
+}
+
+.programacao-faixa {
+    width: 4mm;
+
+    text-align: left;
+}
+
+.programacao-velocidade {
+    width: 3mm;
+
+    text-align: left;
+}
+
+.programacao-cdf {
+    width: 8mm;
+
+    text-align: left;
+}
+
+.programacao-ensaio {
+    margin-top: 4.5mm;
+}
+
+.programacao-ensaio-titulo {
+    text-align: center;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    margin-bottom: 1mm;
+}
+
+.programacao-ensaio th {
+    height: 6.5mm;
+
+    text-align: center;
+}
+
+.programacao-ensaio td {
+    height: 6.15mm;
+}
+
+.programacao-inferior {
+    margin-top: 4mm;
+}
+
+.programacao-inferior td {
+    height: 9mm;
+
+    vertical-align: top;
+
+    padding-top: 1.5mm;
+}
+
+.programacao-pessoas td {
+    height: 6.5mm;
+}
+
+.programacao-aprovacao {
+    margin-top: 7mm;
+
+    display: flex;
+
+    justify-content: space-around;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+.programacao-observacoes {
+    margin-top: 4mm;
+
+    height: 22mm;
+
+    border:
+        0.25mm solid #111;
+
+    padding: 1.2mm;
+
+    font-size: 11px;
+}
+
+.programacao-botoes {
+    text-align: center;
+
+    margin-top: 5mm;
+}
+
+.programacao-botoes button {
+    background: #333;
+
+    color: #fff;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    border-radius: 4px;
+}
+
+.programacao-botoes button:hover {
+    background: #555;
+}
+
+.programacao-campo-incompleto {
+    background: #ffe0e0 !important;
+
+    box-shadow:
+        inset 0 -0.5mm red !important;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    #telaInicio {
+        padding: 15px;
+    }
+
+    .logo {
+        width: min(320px, 90vw);
+
+        height: 170px;
+
+        padding: 15px;
+
+        border-radius: 22px;
+    }
+
+    .inicio-titulo {
+        font-size: 30px;
+    }
+
+    .inicio-menu {
+        grid-template-columns: 1fr;
+    }
+
+    #telaAtendimento {
+        padding: 10px;
+    }
+
+    .atendimento-card {
+        padding: 18px;
+    }
+
+    .atendimento-cabecalho {
+        padding: 20px 15px;
+    }
+
+    .atendimento-cabecalho h1 {
+        font-size: 21px;
+    }
+
+    .atendimento-botoes {
+        grid-template-columns: 1fr;
+    }
+
+    .atendimento-tecnicos {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .atendimento-bloco {
+        padding: 10px;
+    }
+
+    .atendimento-tecnico {
+        padding: 9px 10px;
+
+        gap: 9px;
+
+        min-height: 40px;
+
+        font-size: 14px;
+    }
+
+    #telaProgramacao {
+        min-height: 100vh;
+
+        background: #ddd;
+
+        padding: 10px;
+
+        overflow-x: auto;
+        overflow-y: auto;
+
+        color: #000;
+    }
+
+    .programacao-area {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .programacao-navegacao {
+        width: 100%;
+
+        margin-bottom: 10px;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .atendimento-tecnicos {
+        grid-template-columns: 1fr;
+    }
+
+    .atendimento-card {
+        padding: 14px;
+    }
+
+}
+
+
+/* =========================================================
+   IMPRESSÃO
+   ========================================================= */
+
+@page {
+    size: A4 portrait;
+
+    margin: 0;
+}
+
+@media print {
+
+    html,
+    body {
+        background: #fff !important;
+    }
+
+    body * {
+        visibility: hidden;
+    }
+
+    #telaProgramacao,
+    #telaProgramacao * {
+        visibility: visible;
+    }
+
+    #telaProgramacao {
+        position: absolute;
+
+        left: 0;
+        top: 0;
+
+        width: 100%;
+
+        padding: 0;
+
+        background: #fff;
+    }
+
+    .programacao-navegacao {
+        display: none !important;
+    }
+
+    .programacao-area {
+        width: 210mm;
+
+        height: 297mm;
+
+        margin: 0;
+
+        box-shadow: none;
+    }
+
+    .programacao-editavel:focus {
+        background: transparent;
+
+        box-shadow: none;
+    }
+
+    .programacao-botoes {
+        display: none !important;
+    }
+
+    .programacao-radio {
+        appearance: none;
+
+        -webkit-appearance: none;
+
+        width: 3.5mm;
+        height: 3.5mm;
+
+        border:
+            0.35mm solid #000;
+
+        border-radius: 50%;
+
+        background: #fff;
+    }
+
+    .programacao-radio:checked {
+        background: #000;
+
+        box-shadow:
+            inset 0 0 0 0.8mm #fff;
+    }
+
+}
