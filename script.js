@@ -78,6 +78,7 @@ const tecnicosPorGrupo = {
         "Hérico",
         "Jesser",
         "Maciel",
+        "Miguel",
         "Willian"
     ],
 
@@ -89,6 +90,7 @@ const tecnicosPorGrupo = {
         "Hérico",
         "Jesser",
         "Maciel",
+        "Miguel",
         "Willian"
     ],
 
