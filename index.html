@@ -2,15 +2,21 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>GTO | Sistema</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
 <body>
@@ -21,14 +27,18 @@
 
     <section
         id="telaInicio"
-        class="tela ativa">
+        class="tela ativa"
+    >
 
         <div class="inicio-container">
 
             <div class="logo">
+
                 <img
                     src="logogto.png"
-                    alt="Logo GTO">
+                    alt="Logo GTO"
+                >
+
             </div>
 
             <p class="inicio-subtitulo">
@@ -37,10 +47,13 @@
 
             <div class="inicio-menu">
 
+                <!-- PROGRAMAÇÃO DO DIA -->
+
                 <button
                     type="button"
                     class="inicio-card"
-                    onclick="abrirTela('telaAtendimento')">
+                    onclick="abrirTela('telaAtendimento')"
+                >
 
                     <div class="inicio-icone">
                         📅
@@ -60,10 +73,13 @@
                 </button>
 
 
+                <!-- RASCUNHO DE AFERIÇÃO -->
+
                 <button
                     type="button"
                     class="inicio-card"
-                    onclick="abrirTela('telaProgramacao')">
+                    onclick="abrirTela('telaProgramacao')"
+                >
 
                     <div class="inicio-icone">
                         📋
@@ -74,10 +90,11 @@
                     </h2>
 
                     <p>
-                        Preencha conforme a pré-aferição agendada
-                        para o dia seguinte. Em seguida, salve o
-                        documento em formato <b>PDF</b> ou realize
-                        a <b>impressão</b>.
+                        Preencha conforme a pré-aferição
+                        agendada para o dia seguinte.
+                        Em seguida, salve o documento em
+                        formato <b>PDF</b> ou realize a
+                        <b>impressão</b>.
                     </p>
 
                 </button>
@@ -99,19 +116,23 @@
 
     <section
         id="telaAtendimento"
-        class="tela">
+        class="tela"
+    >
 
         <div class="atendimento-container">
+
+            <!-- VOLTAR -->
 
             <button
                 type="button"
                 class="botao-voltar"
-                onclick="abrirTela('telaInicio')">
-
+                onclick="abrirTela('telaInicio')"
+            >
                 ← Voltar ao início
-
             </button>
 
+
+            <!-- CABEÇALHO -->
 
             <div class="atendimento-cabecalho">
 
@@ -126,10 +147,14 @@
             </div>
 
 
+            <!-- CARD -->
+
             <div class="atendimento-card">
 
 
-                <!-- DATA -->
+                <!-- =====================================================
+                     DATA
+                     ===================================================== -->
 
                 <div class="atendimento-campo">
 
@@ -139,12 +164,15 @@
 
                     <input
                         type="date"
-                        id="atendimentoData">
+                        id="atendimentoData"
+                    >
 
                 </div>
 
 
-                <!-- CDF -->
+                <!-- =====================================================
+                     CDF
+                     ===================================================== -->
 
                 <div class="atendimento-campo">
 
@@ -154,16 +182,26 @@
 
                     <div
                         class="atendimento-bloco"
-                        data-grupo="cdf">
+                        data-grupo="cdf"
+                    >
 
                         <div class="atendimento-tecnicos"></div>
+
+                        <input
+                            type="text"
+                            class="atendimento-campo-bloco"
+                            id="atendimentoObservacaoCdf"
+                            placeholder="Observação CDF"
+                        >
 
                     </div>
 
                 </div>
 
 
-                <!-- CN2 -->
+                <!-- =====================================================
+                     CN2
+                     ===================================================== -->
 
                 <div class="atendimento-campo">
 
@@ -173,9 +211,17 @@
 
                     <div
                         class="atendimento-bloco"
-                        data-grupo="cn2">
+                        data-grupo="cn2"
+                    >
 
                         <div class="atendimento-tecnicos"></div>
+
+                        <input
+                            type="text"
+                            class="atendimento-campo-bloco"
+                            id="atendimentoObservacaoCn2"
+                            placeholder="Observação CN2"
+                        >
 
                     </div>
 
@@ -185,7 +231,9 @@
                 <hr>
 
 
-                <!-- AFERIÇÃO -->
+                <!-- =====================================================
+                     AFERIÇÃO
+                     ===================================================== -->
 
                 <div class="atendimento-campo">
 
@@ -195,15 +243,17 @@
 
                     <div
                         class="atendimento-bloco"
-                        data-grupo="afericao">
+                        data-grupo="afericao"
+                    >
 
                         <div class="atendimento-tecnicos"></div>
 
                         <input
                             type="text"
                             class="atendimento-campo-bloco"
-                            data-campo-grupo="afericao"
-                            placeholder="Pontos — Ex.: DER002, DER007, DER012">
+                            id="atendimentoAfericao"
+                            placeholder="Ponto e observação — Ex.: DER002, DER007, DER012"
+                        >
 
                     </div>
 
@@ -213,7 +263,9 @@
                 <hr>
 
 
-                <!-- ATUALIZAÇÃO DE CAIXA -->
+                <!-- =====================================================
+                     ATUALIZAÇÃO DE CAIXA
+                     ===================================================== -->
 
                 <div class="atendimento-campo">
 
@@ -223,7 +275,8 @@
 
                     <div
                         class="atendimento-bloco"
-                        data-grupo="atualizacaoCaixa">
+                        data-grupo="atualizacaoCaixa"
+                    >
 
                         <div class="atendimento-tecnicos"></div>
 
@@ -231,7 +284,8 @@
                             type="text"
                             class="atendimento-campo-bloco"
                             id="atendimentoPonto"
-                            placeholder="Pontos — Ex.: DER002">
+                            placeholder="Pontos — Ex.: DER002"
+                        >
 
                     </div>
 
@@ -241,7 +295,9 @@
                 <hr>
 
 
-                <!-- CAMINHÃO 01 -->
+                <!-- =====================================================
+                     CAMINHÃO 01
+                     ===================================================== -->
 
                 <div class="atendimento-campo">
 
@@ -251,7 +307,8 @@
 
                     <div
                         class="atendimento-bloco"
-                        data-grupo="caminhao1">
+                        data-grupo="caminhao1"
+                    >
 
                         <div class="atendimento-tecnicos"></div>
 
@@ -259,7 +316,8 @@
                             type="text"
                             class="atendimento-campo-bloco"
                             id="atendimentoRodovia1"
-                            placeholder="Pontos — Ex.: DER002. Rodovia - Ex.: DF-025. Serviço Ex.: Implantação de Poste">
+                            placeholder="Pontos — Ex.: DER002. Rodovia — Ex.: DF-025. Serviço — Ex.: Implantação de Poste"
+                        >
 
                     </div>
 
@@ -269,7 +327,9 @@
                 <hr>
 
 
-                <!-- CAMINHÃO 02 -->
+                <!-- =====================================================
+                     CAMINHÃO 02
+                     ===================================================== -->
 
                 <div class="atendimento-campo">
 
@@ -279,7 +339,8 @@
 
                     <div
                         class="atendimento-bloco"
-                        data-grupo="caminhao2">
+                        data-grupo="caminhao2"
+                    >
 
                         <div class="atendimento-tecnicos"></div>
 
@@ -287,7 +348,8 @@
                             type="text"
                             class="atendimento-campo-bloco"
                             id="atendimentoRodovia2"
-                            placeholder="Pontos — Ex.: DER002. Rodovia - Ex.: DF-025. Serviço Ex.: Implantação de Poste">
+                            placeholder="Pontos — Ex.: DER002. Rodovia — Ex.: DF-025. Serviço — Ex.: Implantação de Poste"
+                        >
 
                     </div>
 
@@ -297,7 +359,9 @@
                 <hr>
 
 
-                <!-- ATUALIZAÇÃO E REVITALIZAÇÃO -->
+                <!-- =====================================================
+                     ATUALIZAÇÃO E REVITALIZAÇÃO
+                     ===================================================== -->
 
                 <div class="atendimento-campo">
 
@@ -307,7 +371,8 @@
 
                     <div
                         class="atendimento-bloco"
-                        data-grupo="atualizacaoRevitalizacao">
+                        data-grupo="atualizacaoRevitalizacao"
+                    >
 
                         <div class="atendimento-tecnicos"></div>
 
@@ -315,48 +380,74 @@
                             type="text"
                             class="atendimento-campo-bloco"
                             id="atendimentoRodovia3"
-                            placeholder="Pontos — Ex.: DER002. Rodovia - Ex.: DF-025. Serviço Ex.: Implantação de Poste">
+                            placeholder="Pontos — Ex.: DER002. Rodovia — Ex.: DF-025. Serviço — Ex.: Implantação de Poste"
+                        >
 
                     </div>
 
                 </div>
 
 
-                <!-- BOTÕES -->
+                <hr>
+
+
+                <!-- =====================================================
+                     OBSERVAÇÃO GERAL
+                     ===================================================== -->
+
+                <div class="atendimento-campo">
+
+                    <label for="atendimentoObservacao">
+                        📝 Observação Geral
+                    </label>
+
+                    <textarea
+                        id="atendimentoObservacao"
+                        class="atendimento-observacao"
+                        placeholder="Digite uma observação geral, se necessário..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- =====================================================
+                     BOTÕES
+                     ===================================================== -->
 
                 <div class="atendimento-botoes">
 
                     <button
                         type="button"
                         class="btn-whatsapp"
-                        onclick="enviarWhatsApp()">
-
+                        onclick="enviarWhatsApp()"
+                    >
                         📱 ENVIAR WHATSAPP
-
                     </button>
+
 
                     <button
                         type="button"
                         class="btn-copiar"
-                        onclick="copiarMensagem()">
-
+                        onclick="copiarMensagem()"
+                    >
                         📋 COPIAR MENSAGEM
-
                     </button>
+
 
                     <button
                         type="button"
                         class="btn-limpar"
-                        onclick="limparFormularioAtendimento()">
-
+                        onclick="limparFormularioAtendimento()"
+                    >
                         🗑️ LIMPAR
-
                     </button>
 
                 </div>
 
 
-                <!-- PREVIEW -->
+                <!-- =====================================================
+                     PREVIEW
+                     ===================================================== -->
 
                 <div class="atendimento-preview">
 
@@ -366,7 +457,8 @@
 
                     <textarea
                         id="mensagemPreview"
-                        readonly></textarea>
+                        readonly
+                    ></textarea>
 
                     <div class="atendimento-aviso">
 
@@ -376,7 +468,8 @@
 
                         o botão do WhatsApp abre uma conversa
                         no WhatsApp com a mensagem já preenchida.
-                        Você escolhe o contato ou grupo e toca em enviar.
+                        Você escolhe o contato ou grupo e toca
+                        em enviar.
 
                     </div>
 
@@ -395,23 +488,32 @@
 
     <section
         id="telaProgramacao"
-        class="tela">
+        class="tela"
+    >
+
+        <!-- NAVEGAÇÃO -->
 
         <div class="programacao-navegacao">
 
             <button
                 type="button"
                 class="botao-voltar"
-                onclick="abrirTela('telaInicio')">
-
+                onclick="abrirTela('telaInicio')"
+            >
                 ← Voltar ao início
-
             </button>
 
         </div>
 
 
+        <!-- ÁREA A4 -->
+
         <div class="programacao-area">
+
+
+            <!-- =====================================================
+                 CABEÇALHO
+                 ===================================================== -->
 
             <div class="programacao-cabecalho">
 
@@ -419,9 +521,11 @@
 
                     <img
                         src="inmetro.png"
-                        alt="Logo do INMETRO">
+                        alt="Logo do INMETRO"
+                    >
 
                 </div>
+
 
                 <div class="programacao-dados-cabecalho">
 
@@ -445,9 +549,7 @@
                     </div>
 
                     <div>
-                        TELEFONE:
-                        (61) 3348-6300 /
-                        3348-6320
+                        TELEFONE: (61) 3348-6300 / 3348-6320
                     </div>
 
                 </div>
@@ -455,32 +557,47 @@
             </div>
 
 
+            <!-- =====================================================
+                 TÍTULO
+                 ===================================================== -->
+
             <div class="programacao-titulo">
 
-                RASCUNHO DE RELATÓRIO
-                MEDIDORES DE VELOCIDADE
+                RASCUNHO DE RELATÓRIO MEDIDORES DE VELOCIDADE
                 PARA VEÍCULOS AUTOMOTIVOS
 
             </div>
 
 
+            <!-- =====================================================
+                 RAZÃO SOCIAL
+                 ===================================================== -->
+
             <table class="programacao-info">
 
                 <tr>
+
                     <td colspan="3">
                         Razão Social:
                         TALENTECH TECNOLOGIA LTDA
                     </td>
+
                 </tr>
 
                 <tr>
+
                     <td colspan="3">
                         Tipo de serviço metrológico:
                     </td>
+
                 </tr>
 
             </table>
 
+
+            <!-- =====================================================
+                 TIPO DE SERVIÇO
+                 ===================================================== -->
 
             <table class="programacao-servico">
 
@@ -489,25 +606,31 @@
                     <td>
 
                         <label>
+
                             <input
                                 class="programacao-radio"
                                 type="radio"
                                 name="tipoServico"
-                                value="inicial">
+                                value="inicial"
+                            >
 
                             Verificação Inicial
+
                         </label>
 
                         <br>
 
                         <label>
+
                             <input
                                 class="programacao-radio"
                                 type="radio"
                                 name="tipoServico"
-                                value="periodica">
+                                value="periodica"
+                            >
 
                             Verificação Periódica
+
                         </label>
 
                     </td>
@@ -516,25 +639,31 @@
                     <td>
 
                         <label>
+
                             <input
                                 class="programacao-radio"
                                 type="radio"
                                 name="tipoServico"
-                                value="reparo">
+                                value="reparo"
+                            >
 
                             Verificação Após reparo
+
                         </label>
 
                         <br>
 
                         <label>
+
                             <input
                                 class="programacao-radio"
                                 type="radio"
                                 name="tipoServico"
-                                value="inspecao">
+                                value="inspecao"
+                            >
 
                             Inspeção Metrológica
+
                         </label>
 
                     </td>
@@ -544,15 +673,23 @@
             </table>
 
 
+            <!-- =====================================================
+                 LOCAL DE EXECUÇÃO
+                 ===================================================== -->
+
             <table class="programacao-info">
 
                 <tr>
+
                     <td colspan="3">
                         Local de execução do serviço metrológico
                     </td>
+
                 </tr>
 
+
                 <tr>
+
                     <td colspan="3">
 
                         Endereço:
@@ -560,12 +697,16 @@
                         <input
                             class="programacao-editavel programacao-endereco"
                             type="text"
-                            placeholder="DIGITE O ENDEREÇO">
+                            placeholder="DIGITE O ENDEREÇO"
+                        >
 
                     </td>
+
                 </tr>
 
+
                 <tr>
+
                     <td colspan="3">
 
                         Sentido:
@@ -573,12 +714,16 @@
                         <input
                             class="programacao-editavel programacao-sentido"
                             type="text"
-                            placeholder="DIGITE O SENTIDO">
+                            placeholder="DIGITE O SENTIDO"
+                        >
 
                     </td>
+
                 </tr>
 
+
                 <tr>
+
                     <td colspan="3">
 
                         Identificação do Ponto:
@@ -586,28 +731,32 @@
                         <input
                             class="programacao-editavel programacao-ponto"
                             type="text"
-                            placeholder="DIGITE A IDENTIFICAÇÃO DO PONTO">
+                            placeholder="DIGITE A IDENTIFICAÇÃO DO PONTO"
+                        >
 
                     </td>
+
                 </tr>
 
+
                 <tr>
+
                     <td colspan="3">
                         N.º portaria de aprovação:
                         228/2018
                     </td>
+
                 </tr>
+
 
                 <tr>
 
                     <td>
-                        Marca:
-                        ENGEBRAS
+                        Marca: ENGEBRAS
                     </td>
 
                     <td>
-                        Modelo:
-                        MMV 544
+                        Modelo: MMV 544
                     </td>
 
                     <td>
@@ -615,6 +764,7 @@
                     </td>
 
                 </tr>
+
 
                 <tr>
 
@@ -624,11 +774,13 @@
 
                 </tr>
 
+
                 <tr>
 
                     <td>
                         Nº INMETRO:
                     </td>
+
 
                     <td>
 
@@ -638,11 +790,14 @@
                             class="programacao-editavel programacao-velocidade"
                             type="text"
                             placeholder="00"
-                            maxlength="2">
+                            maxlength="2"
+                            inputmode="numeric"
+                        >
 
                         Km/h
 
                     </td>
+
 
                     <td>
 
@@ -652,7 +807,9 @@
                             class="programacao-editavel programacao-faixa"
                             type="text"
                             placeholder="00"
-                            maxlength="2">
+                            maxlength="2"
+                            inputmode="numeric"
+                        >
 
                         CDF/
 
@@ -660,7 +817,9 @@
                             class="programacao-editavel programacao-cdf"
                             type="text"
                             placeholder="000"
-                            maxlength="3">
+                            maxlength="3"
+                            inputmode="numeric"
+                        >
 
                     </td>
 
@@ -668,36 +827,45 @@
 
             </table>
 
+
+            <!-- =====================================================
+                 CONFORMIDADE
+                 ===================================================== -->
 
             <table class="programacao-servico">
 
                 <tr>
 
                     <td>
+
                         <b>
                             Modelo conforme caderno de componentes
                         </b>
+
                     </td>
 
                     <td>
-                        (___) SIM&nbsp;&nbsp;
-                        (___) NÃO&nbsp;&nbsp;
-                        (___) Não aplicável
+                        () SIM&nbsp;&nbsp;
+                        () NÃO&nbsp;&nbsp;
+                        (_) Não aplicável
                     </td>
 
                 </tr>
 
+
                 <tr>
 
                     <td>
+
                         <b>
                             Modelo conforme portaria de aprovação e aditivos
                         </b>
+
                     </td>
 
                     <td>
-                        (___) SIM&nbsp;&nbsp;
-                        (___) NÃO
+                        () SIM&nbsp;&nbsp;
+                        () NÃO
                     </td>
 
                 </tr>
@@ -705,11 +873,16 @@
             </table>
 
 
+            <!-- =====================================================
+                 ENSAIO DE CAMPO
+                 ===================================================== -->
+
             <div class="programacao-ensaio">
 
                 <div class="programacao-ensaio-titulo">
                     Ensaio de campo
                 </div>
+
 
                 <table>
 
@@ -733,21 +906,85 @@
 
                     </tr>
 
-                    <tr><td></td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
 
                 </table>
 
             </div>
 
+
+            <!-- =====================================================
+                 INFORMAÇÕES INFERIORES
+                 ===================================================== -->
 
             <table class="programacao-inferior">
 
@@ -755,47 +992,46 @@
 
                     <td style="width:33.33%;">
 
-                        HORA DE SAÍDA:
-                        ______:______
+                        HORA DE SAÍDA: ______:______
 
-                        <br><br>
+                        <br>
+                        <br>
 
-                        HORA DE CHEGADA:
-                        ______:______
+                        HORA DE CHEGADA: ______:______
 
                     </td>
+
 
                     <td style="width:33.33%;">
 
-                        DATA:
-                        ______/______/__________
+                        DATA: ______/______/__________
 
-                        <br><br>
+                        <br>
+                        <br>
 
-                        INÍCIO:
-                        ______:______
+                        INÍCIO: ______:______
 
-                        <br><br>
+                        <br>
+                        <br>
 
-                        TÉRMINO:
-                        ______:______
+                        TÉRMINO: ______:______
 
                     </td>
+
 
                     <td style="width:33.34%;">
 
                         PLACA:
-                        ____________________
 
-                        <br><br>
+                        <br>
+                        <br>
 
                         km SAÍDA:
-                        _________________
 
-                        <br><br>
+                        <br>
+                        <br>
 
                         km CHEGADA:
-                        _____________
 
                     </td>
 
@@ -803,6 +1039,10 @@
 
             </table>
 
+
+            <!-- =====================================================
+                 PESSOAS
+                 ===================================================== -->
 
             <table class="programacao-pessoas">
 
@@ -817,6 +1057,7 @@
                     </td>
 
                 </tr>
+
 
                 <tr>
 
@@ -833,18 +1074,26 @@
             </table>
 
 
+            <!-- =====================================================
+                 APROVAÇÃO
+                 ===================================================== -->
+
             <div class="programacao-aprovacao">
 
                 <div>
-                    (___) Aprovado
+                    (_) Aprovado
                 </div>
 
                 <div>
-                    (___) Reprovado
+                    (_) Reprovado
                 </div>
 
             </div>
 
+
+            <!-- =====================================================
+                 OBSERVAÇÕES
+                 ===================================================== -->
 
             <div class="programacao-observacoes">
 
@@ -855,14 +1104,17 @@
             </div>
 
 
+            <!-- =====================================================
+                 BOTÃO IMPRIMIR
+                 ===================================================== -->
+
             <div class="programacao-botoes">
 
                 <button
                     type="button"
-                    onclick="validarEImprimir()">
-
+                    onclick="validarEImprimir()"
+                >
                     🖨️ IMPRIMIR / SALVAR PDF
-
                 </button>
 
             </div>
@@ -872,7 +1124,9 @@
     </section>
 
 
-    <!-- JAVASCRIPT -->
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
 
     <script src="script.js"></script>
 

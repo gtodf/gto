@@ -52,7 +52,11 @@ button {
 
 .tela.ativa {
     display: block;
-    animation: aparecerTela 0.25s ease;
+
+    animation:
+        aparecerTela
+        0.25s
+        ease;
 }
 
 @keyframes aparecerTela {
@@ -82,6 +86,7 @@ button {
     padding: 20px;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
@@ -90,7 +95,8 @@ button {
     border-radius: 30px;
 
     box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.25);
+        0 15px 40px
+        rgba(0, 0, 0, 0.25);
 
     overflow: hidden;
 }
@@ -131,14 +137,6 @@ button {
     max-width: 900px;
 }
 
-.inicio-titulo {
-    font-size: 38px;
-    margin-bottom: 8px;
-
-    color: #fff;
-    font-weight: 800;
-}
-
 .inicio-subtitulo {
     color: #d1fae5;
 
@@ -175,8 +173,6 @@ button {
 
     border-radius: 20px;
 
-    text-decoration: none;
-
     display: block;
 
     transition:
@@ -195,6 +191,13 @@ button {
     box-shadow:
         0 18px 40px
         rgba(0, 0, 0, 0.25);
+}
+
+.inicio-card:focus-visible {
+    outline:
+        3px solid #25d366;
+
+    outline-offset: 3px;
 }
 
 .inicio-icone {
@@ -217,6 +220,7 @@ button {
 
 .inicio-card h2 {
     font-size: 21px;
+
     margin-bottom: 8px;
 
     color: #0f172a;
@@ -268,9 +272,16 @@ button {
         translateX(-2px);
 }
 
+.botao-voltar:focus-visible {
+    outline:
+        3px solid #25d366;
+
+    outline-offset: 2px;
+}
+
 
 /* =========================================================
-   ATENDIMENTO
+   TELA DE ATENDIMENTO
    ========================================================= */
 
 #telaAtendimento {
@@ -282,10 +293,17 @@ button {
 }
 
 .atendimento-container {
+    width: 100%;
+
     max-width: 900px;
 
     margin: 0 auto;
 }
+
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
 
 .atendimento-cabecalho {
     background: #075e54;
@@ -312,7 +330,14 @@ button {
     opacity: 0.9;
 }
 
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
 .atendimento-card {
+    width: 100%;
+
     background: white;
 
     padding: 25px;
@@ -325,7 +350,14 @@ button {
         rgba(0, 0, 0, 0.08);
 }
 
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
 .atendimento-campo {
+    width: 100%;
+
     margin-bottom: 18px;
 }
 
@@ -341,23 +373,67 @@ button {
 
 
 /* =========================================================
-   BLOCO DOS TÉCNICOS + CAMPO
+   INPUT DATA
+   ========================================================= */
+
+#atendimentoData {
+    width: 100%;
+
+    height: 42px;
+
+    padding: 9px 12px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    background: #fff;
+
+    color: #1e293b;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+#atendimentoData:focus {
+    border-color: #075e54;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(
+            7,
+            94,
+            84,
+            0.10
+        );
+}
+
+
+/* =========================================================
+   BLOCO VERDE
    ========================================================= */
 
 .atendimento-bloco {
     width: 100%;
 
+    max-width: 100%;
+
     background: #075e54;
 
-    border: 1px solid #064e46;
+    border:
+        1px solid #064e46;
 
     border-radius: 12px;
 
-    padding: 12px;
+    padding: 7px;
 
     box-shadow:
         0 4px 12px
         rgba(0, 0, 0, 0.08);
+
+    overflow: hidden;
 }
 
 
@@ -366,32 +442,41 @@ button {
    ========================================================= */
 
 .atendimento-tecnicos {
+    width: 100%;
+
     display: grid;
 
     grid-template-columns:
         repeat(
-            auto-fit,
-            minmax(150px, 1fr)
+            5,
+            minmax(0, 1fr)
         );
 
-    gap: 8px;
+    gap: 7px;
 }
 
 
 /* =========================================================
-   CADA TÉCNICO
+   TÉCNICO
    ========================================================= */
 
 .atendimento-tecnico {
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 40px;
+
+    height: 40px;
+
     display: flex;
 
     align-items: center;
 
-    gap: 10px;
+    gap: 8px;
 
-    min-height: 42px;
-
-    padding: 9px 12px;
+    padding:
+        7px 10px;
 
     background: #fff;
 
@@ -402,7 +487,13 @@ button {
 
     cursor: pointer;
 
+    font-size: 14px;
+
     font-weight: normal;
+
+    white-space: nowrap;
+
+    overflow: hidden;
 
     transition:
         background 0.2s,
@@ -419,42 +510,6 @@ button {
         translateY(-1px);
 }
 
-
-/* =========================================================
-   CHECKBOX
-   ========================================================= */
-
-.atendimento-tecnico input[type="checkbox"] {
-    flex: 0 0 auto;
-
-    width: 18px;
-    height: 18px;
-
-    margin: 0;
-
-    cursor: pointer;
-
-    accent-color: #075e54;
-}
-
-
-/* =========================================================
-   NOME DO TÉCNICO
-   ========================================================= */
-
-.atendimento-tecnico {
-    gap: 12px;
-}
-
-.atendimento-tecnico input[type="checkbox"] + * {
-    margin-left: 2px;
-}
-
-
-/* =========================================================
-   SELECIONADO
-   ========================================================= */
-
 .atendimento-tecnico.selecionado {
     background: #dcfce7;
 
@@ -465,19 +520,162 @@ button {
 
 
 /* =========================================================
-   CAMPO DE TEXTO DENTRO DO BLOCO
+   CHECKBOX
+   ========================================================= */
+
+.atendimento-tecnico input[type="checkbox"] {
+    flex:
+        0 0 auto;
+
+    width: 17px;
+    height: 17px;
+
+    min-width: 17px;
+    min-height: 17px;
+
+    margin: 0;
+    padding: 0;
+
+    cursor: pointer;
+
+    accent-color: #075e54;
+}
+
+
+/* =========================================================
+   TEXTO DO TÉCNICO
+   ========================================================= */
+
+.atendimento-tecnico input[type="checkbox"] + * {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   CAMPOS DENTRO DO BLOCO VERDE
    ========================================================= */
 
 .atendimento-campo-bloco {
+    display: block;
+
     width: 100%;
 
-    margin-top: 12px;
+    max-width: 100%;
 
-    padding: 12px 14px;
+    height: 40px;
+
+    min-height: 40px;
+
+    margin-top: 8px;
+
+    padding:
+        8px 11px;
 
     background: #fff;
 
     color: #1e293b;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    line-height: 1.2;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.atendimento-campo-bloco:focus {
+    border-color: #25d366;
+
+    box-shadow:
+        0 0 0 2px
+        rgba(
+            37,
+            211,
+            102,
+            0.15
+        );
+}
+
+.atendimento-campo-bloco::placeholder {
+    color: #64748b;
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   CAMPO OUTROS
+   ========================================================= */
+
+.atendimento-outros {
+    grid-column:
+        1 / -1;
+
+    width: 100%;
+
+    height: 38px;
+
+    min-height: 38px;
+
+    display: none;
+
+    margin: 0;
+
+    padding:
+        8px 12px;
+
+    background: #fff;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    color: #1e293b;
+
+    outline: none;
+}
+
+.atendimento-outros.mostrar {
+    display: block;
+}
+
+.atendimento-outros:focus {
+    border-color: #25d366;
+
+    box-shadow:
+        0 0 0 2px
+        rgba(
+            37,
+            211,
+            102,
+            0.15
+        );
+}
+
+
+/* =========================================================
+   INPUTS NORMAIS
+   ========================================================= */
+
+.atendimento-card input[type="text"],
+.atendimento-card input[type="date"],
+.atendimento-card textarea {
+    width: 100%;
+
+    max-width: 100%;
+
+    padding: 10px 12px;
 
     border:
         1px solid #cbd5e1;
@@ -493,47 +691,6 @@ button {
         box-shadow 0.2s;
 }
 
-.atendimento-campo-bloco:focus {
-    border-color: #25d366;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(
-            37,
-            211,
-            102,
-            0.15
-        );
-}
-
-.atendimento-campo-bloco::placeholder {
-    color: #64748b;
-}
-
-
-/* =========================================================
-   INPUTS NORMAIS
-   ========================================================= */
-
-.atendimento-card input[type="text"],
-.atendimento-card input[type="date"],
-.atendimento-card textarea {
-    width: 100%;
-
-    padding: 12px;
-
-    border:
-        1px solid #cbd5e1;
-
-    border-radius: 8px;
-
-    font-size: 16px;
-
-    outline: none;
-
-    transition: 0.2s;
-}
-
 .atendimento-card input[type="text"]:focus,
 .atendimento-card input[type="date"]:focus,
 .atendimento-card textarea:focus {
@@ -545,28 +702,63 @@ button {
             7,
             94,
             84,
-            0.1
+            0.10
         );
 }
 
 
 /* =========================================================
-   OUTROS
+   OBSERVAÇÃO
    ========================================================= */
 
-.atendimento-outros {
-    grid-column: 1 / -1;
+.atendimento-observacao {
+    width: 100%;
 
-    display: none;
+    min-height: 65px;
+
+    height: 65px;
+
+    padding:
+        9px 12px;
+
+    background: #fff;
+
+    color: #1e293b;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    resize: vertical;
+
+    outline: none;
 }
 
-.atendimento-outros.mostrar {
-    display: block;
+.atendimento-observacao:focus {
+    border-color: #075e54;
+
+    box-shadow:
+        0 0 0 2px
+        rgba(
+            7,
+            94,
+            84,
+            0.10
+        );
+}
+
+.atendimento-observacao::placeholder {
+    color: #64748b;
 }
 
 
 /* =========================================================
-   LINHA
+   LINHAS
    ========================================================= */
 
 .atendimento-card hr {
@@ -576,7 +768,7 @@ button {
         1px solid #e2e8f0;
 
     margin:
-        25px 0;
+        22px 0;
 }
 
 
@@ -606,7 +798,8 @@ button {
 
     font-weight: bold;
 
-    transition: 0.2s;
+    transition:
+        0.2s;
 }
 
 .atendimento-botoes button:hover {
@@ -616,18 +809,43 @@ button {
     opacity: 0.92;
 }
 
+.atendimento-botoes button:focus-visible {
+    outline:
+        3px solid #0f172a;
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   WHATSAPP
+   ========================================================= */
+
 .btn-whatsapp {
     background: #25d366;
+
     color: white;
 }
+
+
+/* =========================================================
+   COPIAR
+   ========================================================= */
 
 .btn-copiar {
     background: #2563eb;
+
     color: white;
 }
 
+
+/* =========================================================
+   LIMPAR
+   ========================================================= */
+
 .btn-limpar {
     background: #64748b;
+
     color: white;
 }
 
@@ -671,7 +889,14 @@ button {
     font-size: 15px;
 
     line-height: 1.5;
+
+    outline: none;
 }
+
+
+/* =========================================================
+   AVISO
+   ========================================================= */
 
 .atendimento-aviso {
     margin-top: 15px;
@@ -686,6 +911,8 @@ button {
     border-radius: 5px;
 
     font-size: 14px;
+
+    line-height: 1.5;
 }
 
 
@@ -701,6 +928,8 @@ button {
     padding: 20px;
 
     color: #000;
+
+    overflow-x: auto;
 }
 
 .programacao-area {
@@ -711,7 +940,9 @@ button {
     margin: 0 auto;
 
     padding:
-        9mm 13mm 8mm;
+        9mm
+        13mm
+        8mm;
 
     background: #fff;
 
@@ -745,7 +976,8 @@ button {
         0.25mm solid #111;
 
     padding:
-        1mm 1.2mm;
+        1mm
+        1.2mm;
 
     font-size: 11px;
 
@@ -753,6 +985,11 @@ button {
 
     vertical-align: middle;
 }
+
+
+/* =========================================================
+   CABEÇALHO A4
+   ========================================================= */
 
 .programacao-cabecalho {
     height: 29mm;
@@ -764,6 +1001,7 @@ button {
     position: absolute;
 
     left: 5mm;
+
     top: -1mm;
 
     width: 22mm;
@@ -771,6 +1009,7 @@ button {
 
 .programacao-logo img {
     max-width: 22mm;
+
     max-height: 20mm;
 
     display: block;
@@ -783,6 +1022,7 @@ button {
     position: absolute;
 
     left: 29mm;
+
     top: 0;
 
     font-size: 11px;
@@ -810,11 +1050,18 @@ button {
     height: 7mm;
 }
 
+
+/* =========================================================
+   RADIO
+   ========================================================= */
+
 .programacao-radio {
     appearance: none;
+
     -webkit-appearance: none;
 
     width: 3.5mm;
+
     height: 3.5mm;
 
     border:
@@ -823,11 +1070,15 @@ button {
     border-radius: 50%;
 
     margin:
-        1mm 1mm 0 0;
+        1mm
+        1mm
+        0
+        0;
 
     padding: 0;
 
-    vertical-align: -0.7mm;
+    vertical-align:
+        -0.7mm;
 
     background: #fff;
 
@@ -836,8 +1087,16 @@ button {
 
 .programacao-radio:checked {
     box-shadow:
-        inset 0 0 0 0.9mm #ff0000;
+        inset
+        0 0 0
+        0.9mm
+        #ff0000;
 }
+
+
+/* =========================================================
+   CAMPOS EDITÁVEIS A4
+   ========================================================= */
 
 .programacao-editavel {
     border: none;
@@ -853,6 +1112,7 @@ button {
     font-size: inherit;
 
     padding: 0;
+
     margin: 0;
 
     text-transform: uppercase;
@@ -868,7 +1128,9 @@ button {
     background: #fff0f0;
 
     box-shadow:
-        inset 0 -0.3mm red;
+        inset
+        0 -0.3mm
+        red;
 }
 
 .programacao-endereco {
@@ -901,6 +1163,11 @@ button {
     text-align: left;
 }
 
+
+/* =========================================================
+   ENSAIO
+   ========================================================= */
+
 .programacao-ensaio {
     margin-top: 4.5mm;
 }
@@ -925,6 +1192,11 @@ button {
     height: 6.15mm;
 }
 
+
+/* =========================================================
+   PARTE INFERIOR
+   ========================================================= */
+
 .programacao-inferior {
     margin-top: 4mm;
 }
@@ -941,6 +1213,11 @@ button {
     height: 6.5mm;
 }
 
+
+/* =========================================================
+   APROVAÇÃO
+   ========================================================= */
+
 .programacao-aprovacao {
     margin-top: 7mm;
 
@@ -952,6 +1229,11 @@ button {
 
     font-weight: bold;
 }
+
+
+/* =========================================================
+   OBSERVAÇÕES A4
+   ========================================================= */
 
 .programacao-observacoes {
     margin-top: 4mm;
@@ -966,6 +1248,11 @@ button {
     font-size: 11px;
 }
 
+
+/* =========================================================
+   BOTÃO IMPRESSÃO
+   ========================================================= */
+
 .programacao-botoes {
     text-align: center;
 
@@ -979,7 +1266,9 @@ button {
 
     border: none;
 
-    padding: 10px 20px;
+    padding:
+        10px
+        20px;
 
     font-family:
         Arial,
@@ -998,11 +1287,19 @@ button {
     background: #555;
 }
 
+
+/* =========================================================
+   CAMPO A4 INCOMPLETO
+   ========================================================= */
+
 .programacao-campo-incompleto {
-    background: #ffe0e0 !important;
+    background:
+        #ffe0e0 !important;
 
     box-shadow:
-        inset 0 -0.5mm red !important;
+        inset
+        0 -0.5mm
+        red !important;
 }
 
 
@@ -1012,12 +1309,20 @@ button {
 
 @media (max-width: 700px) {
 
+    /* =========================
+       INÍCIO
+       ========================= */
+
     #telaInicio {
         padding: 15px;
     }
 
     .logo {
-        width: min(320px, 90vw);
+        width:
+            min(
+                320px,
+                90vw
+            );
 
         height: 170px;
 
@@ -1026,24 +1331,27 @@ button {
         border-radius: 22px;
     }
 
-    .inicio-titulo {
-        font-size: 30px;
-    }
-
     .inicio-menu {
         grid-template-columns: 1fr;
     }
+
+
+    /* =========================
+       ATENDIMENTO
+       ========================= */
 
     #telaAtendimento {
         padding: 10px;
     }
 
     .atendimento-card {
-        padding: 18px;
+        padding: 15px;
     }
 
     .atendimento-cabecalho {
-        padding: 20px 15px;
+        padding:
+            20px
+            15px;
     }
 
     .atendimento-cabecalho h1 {
@@ -1054,39 +1362,95 @@ button {
         grid-template-columns: 1fr;
     }
 
-    .atendimento-tecnicos {
-        grid-template-columns: 1fr 1fr;
-    }
+
+    /* =========================
+       BLOCO VERDE
+       ========================= */
 
     .atendimento-bloco {
-        padding: 10px;
+        padding: 6px;
+    }
+
+
+    /* =========================
+       TÉCNICOS MOBILE
+       ========================= */
+
+    .atendimento-tecnicos {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 6px;
     }
 
     .atendimento-tecnico {
-        padding: 9px 10px;
+        height: 38px;
 
-        gap: 9px;
+        min-height: 38px;
 
-        min-height: 40px;
+        padding:
+            6px
+            8px;
 
-        font-size: 14px;
+        gap: 7px;
+
+        font-size: 13px;
     }
 
+    .atendimento-tecnico input[type="checkbox"] {
+        width: 16px;
+
+        height: 16px;
+
+        min-width: 16px;
+
+        min-height: 16px;
+    }
+
+
+    /* =========================
+       CAMPOS MOBILE
+       ========================= */
+
+    .atendimento-campo-bloco {
+        height: 38px;
+
+        min-height: 38px;
+
+        margin-top: 7px;
+
+        padding:
+            7px
+            10px;
+
+        font-size: 13px;
+    }
+
+    .atendimento-observacao {
+        height: 60px;
+
+        min-height: 60px;
+    }
+
+
+    /* =========================
+       PROGRAMAÇÃO
+       ========================= */
+
     #telaProgramacao {
-        min-height: 100vh;
-
-        background: #ddd;
-
         padding: 10px;
 
         overflow-x: auto;
-        overflow-y: auto;
 
-        color: #000;
+        overflow-y: auto;
     }
 
     .programacao-area {
         margin-left: auto;
+
         margin-right: auto;
     }
 
@@ -1098,6 +1462,10 @@ button {
 }
 
 
+/* =========================================================
+   CELULARES PEQUENOS
+   ========================================================= */
+
 @media (max-width: 400px) {
 
     .atendimento-tecnicos {
@@ -1105,9 +1473,16 @@ button {
     }
 
     .atendimento-card {
-        padding: 14px;
+        padding: 12px;
     }
 
+    .atendimento-cabecalho h1 {
+        font-size: 19px;
+    }
+
+    .atendimento-tecnico {
+        font-size: 14px;
+    }
 }
 
 
@@ -1126,6 +1501,10 @@ button {
     html,
     body {
         background: #fff !important;
+
+        width: 210mm;
+
+        height: 297mm;
     }
 
     body * {
@@ -1141,13 +1520,20 @@ button {
         position: absolute;
 
         left: 0;
+
         top: 0;
 
-        width: 100%;
+        width: 210mm;
+
+        min-height: 297mm;
 
         padding: 0;
 
+        margin: 0;
+
         background: #fff;
+
+        overflow: visible;
     }
 
     .programacao-navegacao {
@@ -1159,9 +1545,18 @@ button {
 
         height: 297mm;
 
+        min-height: 297mm;
+
         margin: 0;
 
+        padding:
+            9mm
+            13mm
+            8mm;
+
         box-shadow: none;
+
+        overflow: hidden;
     }
 
     .programacao-editavel:focus {
@@ -1180,6 +1575,7 @@ button {
         -webkit-appearance: none;
 
         width: 3.5mm;
+
         height: 3.5mm;
 
         border:
@@ -1194,7 +1590,9 @@ button {
         background: #000;
 
         box-shadow:
-            inset 0 0 0 0.8mm #fff;
+            inset
+            0 0 0
+            0.8mm
+            #fff;
     }
-
 }

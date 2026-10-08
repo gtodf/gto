@@ -1,336 +1,176 @@
-/* =========================================================
-   NAVEGAÇÃO
-   ========================================================= */
+/* ========================================================= NAVEGAÇÃO ========================================================= */
 
 function abrirTela(idTela) {
 
-    document
-        .querySelectorAll(".tela")
-        .forEach(function(tela) {
+document .querySelectorAll(".tela") .forEach(function (tela) {
 
-            tela.classList.remove("ativa");
+tela.classList.remove("ativa");
 
-        });
+});
 
+const tela = document.getElementById(idTela);
 
-    const tela =
-        document.getElementById(idTela);
+if (!tela) { return; }
 
+tela.classList.add("ativa");
 
-    if (!tela) {
-        return;
-    }
-
-
-    tela.classList.add("ativa");
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+window.scrollTo({ top: 0, behavior: "smooth" });
 
 }
 
-
-/* =========================================================
-   TÉCNICOS
-   ========================================================= */
+/* ========================================================= TÉCNICOS ========================================================= */
 
 const tecnicosPorGrupo = {
 
-    cdf: [
-        "Abimael",
-        "Adeilson",
-        "Hérico",
-        "Jovailson",
-        "Miguel",
-        "Raimundo",
-        "Robson",
-        "Tomé"
-    ],
+cdf: [ "Abimael", "Adeilson", "Hérico", "Jovailson", "Miguel", "Raimundo", "Robson", "Tomé" ],
 
-    cn2: [
-        "Adeilson",
-        "Jovailson",
-        "Tomé"
-    ],
+cn2: [ "Adeilson", "Jovailson", "Tomé" ],
 
-    afericao: [
-        "Jovailson",
-        "Miguel",
-        "Raimundo",
-        "Robson",
-        "Wanderson"
-    ],
+afericao: [ "Jovailson", "Miguel", "Raimundo", "Robson", "Wanderson" ],
 
-    atualizacaoCaixa: [
-        "Anderson Romildo",
-        "Robson",
-        "Wanderson"
-    ],
+atualizacaoCaixa: [ "Anderson Romildo", "Robson", "Wanderson" ],
 
-    caminhao1: [
-        "Adeilson",
-        "Alessandro",
-        "Braulio",
-        "Elder",
-        "Hérico",
-        "Jesser",
-        "Maciel",
-        "Miguel",
-        "Willian"
-    ],
+caminhao1: [ "Adeilson", "Alessandro", "Braulio", "Elder", "Jesser", "Maciel", "Miguel", "Willian" ],
 
-    caminhao2: [
-        "Adeilson",
-        "Alessandro",
-        "Braulio",
-        "Elder",
-        "Hérico",
-        "Jesser",
-        "Maciel",
-        "Miguel",
-        "Willian"
-    ],
+caminhao2: [ "Adeilson", "Alessandro", "Braulio", "Elder", "Jesser", "Maciel", "Miguel", "Willian" ],
 
-    atualizacaoRevitalizacao: [
-        "André",
-        "Maciel"
-    ]
+atualizacaoRevitalizacao: [ "André", "Maciel" ]
 
 };
 
-
-/* =========================================================
-   CRIAR CHECKBOXES
-   ========================================================= */
+/* ========================================================= CRIAR CHECKBOXES ========================================================= */
 
 function criarCheckboxesAtendimento() {
 
-    const blocos =
-        document.querySelectorAll(
-            "#telaAtendimento .atendimento-bloco"
-        );
+const blocos = document.querySelectorAll( "#telaAtendimento .atendimento-bloco" );
 
+blocos.forEach(function (bloco) {
 
-    blocos.forEach(function(bloco) {
+const nomeGrupo = bloco.dataset.grupo;
 
-        const nomeGrupo =
-            bloco.dataset.grupo;
+const container = bloco.querySelector( ".atendimento-tecnicos" );
 
+if (!container) { return; }
 
-        const container =
-            bloco.querySelector(
-                ".atendimento-tecnicos"
-            );
+const listaTecnicos = tecnicosPorGrupo[nomeGrupo] || [];
 
+listaTecnicos.forEach(function (nome) {
 
-        if (!container) {
-            return;
-        }
+criarTecnico( container, nome, nomeGrupo, false );
 
+});
 
-        const listaTecnicos =
-            tecnicosPorGrupo[nomeGrupo] || [];
+criarTecnico( container, "Outros", nomeGrupo, true );
 
-
-        listaTecnicos.forEach(function(nome) {
-
-            criarTecnico(
-                container,
-                nome,
-                nomeGrupo,
-                false
-            );
-
-        });
-
-
-        criarTecnico(
-            container,
-            "Outros",
-            nomeGrupo,
-            true
-        );
-
-    });
+});
 
 }
 
+/* ========================================================= CRIAR TÉCNICO ========================================================= */
 
-/* =========================================================
-   CRIAR UM TÉCNICO
-   ========================================================= */
+function criarTecnico( grupo, nome, nomeGrupo, ehOutros ) {
 
-function criarTecnico(
-    grupo,
-    nome,
-    nomeGrupo,
-    ehOutros
-) {
+const label = document.createElement("label");
 
-    const label =
-        document.createElement("label");
+label.className = "atendimento-tecnico";
 
+const checkbox = document.createElement("input");
 
-    label.className =
-        "atendimento-tecnico";
+checkbox.type = "checkbox";
 
+checkbox.value = nome;
 
-    const checkbox =
-        document.createElement("input");
+checkbox.dataset.grupo = nomeGrupo;
 
+const texto = document.createTextNode(nome);
 
-    checkbox.type =
-        "checkbox";
+label.appendChild( checkbox );
 
+label.appendChild( texto );
 
-    checkbox.value =
-        nome;
+grupo.appendChild( label );
 
+let campoOutros = null;
 
-    checkbox.dataset.grupo =
-        nomeGrupo;
+if (ehOutros) {
 
+campoOutros = document.createElement("input");
 
-    const texto =
-        document.createTextNode(nome);
+campoOutros.type = "text";
 
+campoOutros.className = "atendimento-outros";
 
-    label.appendChild(
-        checkbox
-    );
+campoOutros.placeholder = "Digite o nome de outro técnico";
 
+campoOutros.dataset.grupo = nomeGrupo;
 
-    label.appendChild(
-        texto
-    );
-
-
-    grupo.appendChild(
-        label
-    );
-
-
-    let campoOutros = null;
-
-
-    if (ehOutros) {
-
-        campoOutros =
-            document.createElement("input");
-
-
-        campoOutros.type =
-            "text";
-
-
-        campoOutros.className =
-            "atendimento-outros";
-
-
-        campoOutros.placeholder =
-            "Digite o nome de outro técnico";
-
-
-        campoOutros.dataset.grupo =
-            nomeGrupo;
-
-
-        grupo.appendChild(
-            campoOutros
-        );
-
-    }
-
-
-    checkbox.addEventListener(
-        "change",
-        function() {
-
-            if (checkbox.checked) {
-
-                label.classList.add(
-                    "selecionado"
-                );
-
-            } else {
-
-                label.classList.remove(
-                    "selecionado"
-                );
-
-            }
-
-
-            if (ehOutros && campoOutros) {
-
-                if (checkbox.checked) {
-
-                    campoOutros.classList.add(
-                        "mostrar"
-                    );
-
-                } else {
-
-                    campoOutros.classList.remove(
-                        "mostrar"
-                    );
-
-                    campoOutros.value = "";
-
-                }
-
-            }
-
-
-            gerarMensagem();
-
-        }
-    );
-
-
-    if (campoOutros) {
-
-        campoOutros.addEventListener(
-            "input",
-            gerarMensagem
-        );
-
-    }
+grupo.appendChild( campoOutros );
 
 }
 
+checkbox.addEventListener( "change", function () {
 
-/* =========================================================
-   TÉCNICOS SELECIONADOS
-   ========================================================= */
+if (checkbox.checked) {
+
+label.classList.add( "selecionado" );
+
+} else {
+
+label.classList.remove( "selecionado" );
+
+}
+
+if (ehOutros && campoOutros) {
+
+if (checkbox.checked) {
+
+campoOutros.classList.add( "mostrar" );
+
+campoOutros.focus();
+
+} else {
+
+campoOutros.classList.remove( "mostrar" );
+
+campoOutros.value = "";
+
+}
+
+}
+
+gerarMensagem();
+
+} );
+
+if (campoOutros) {
+
+campoOutros.addEventListener( "input", gerarMensagem );
+
+}
+
+}
+
+/* ========================================================= TÉCNICOS SELECIONADOS ========================================================= */
 
 function tecnicosSelecionados(grupo) {
 
-    const checkboxes =
-        document.querySelectorAll(
-            `#telaAtendimento input[type="checkbox"][data-grupo="${grupo}"]:checked`
-        );
-
+    const checkboxes = document.querySelectorAll(
+        `#telaAtendimento input[type="checkbox"][data-grupo="${grupo}"]:checked`
+    );
 
     const nomes = [];
 
-
-    checkboxes.forEach(function(checkbox) {
+    checkboxes.forEach(function (checkbox) {
 
         if (checkbox.value === "Outros") {
 
-            const campoOutros =
-                document.querySelector(
-                    `#telaAtendimento .atendimento-outros[data-grupo="${grupo}"]`
-                );
-
+            const campoOutros = document.querySelector(
+                `#telaAtendimento .atendimento-outros[data-grupo="${grupo}"]`
+            );
 
             if (
                 campoOutros &&
-                campoOutros.value.trim()
+                campoOutros.value.trim() !== ""
             ) {
 
                 nomes.push(
@@ -349,701 +189,533 @@ function tecnicosSelecionados(grupo) {
 
     });
 
-
     return nomes.join(", ");
-
 }
 
-
-/* =========================================================
-   DATA
-   ========================================================= */
+/* ========================================================= DATA ATUAL ========================================================= */
 
 function colocarDataAtualAtendimento() {
 
-    const hoje =
-        new Date();
+const hoje = new Date();
 
+const ano = hoje.getFullYear();
 
-    const ano =
-        hoje.getFullYear();
+const mes = String( hoje.getMonth() + 1 ).padStart( 2, "0" );
 
+const dia = String( hoje.getDate() ).padStart( 2, "0" );
 
-    const mes =
-        String(
-            hoje.getMonth() + 1
-        ).padStart(
-            2,
-            "0"
-        );
+const campo = document.getElementById( "atendimentoData" );
 
+if (campo) {
 
-    const dia =
-        String(
-            hoje.getDate()
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    const campo =
-        document.getElementById(
-            "atendimentoData"
-        );
-
-
-    if (campo) {
-
-        campo.value =
-            `${ano}-${mes}-${dia}`;
-
-    }
+campo.value = `${ano}-${mes}-${dia}`;
 
 }
 
+}
 
-/* =========================================================
-   DIA DA SEMANA
-   ========================================================= */
+/* ========================================================= DIA DA SEMANA ========================================================= */
 
 function nomeDiaSemana(data) {
 
-    const dias = [
+if (!data) { return ""; }
 
-        "DOMINGO",
-        "SEGUNDA FEIRA",
-        "TERÇA FEIRA",
-        "QUARTA FEIRA",
-        "QUINTA FEIRA",
-        "SEXTA FEIRA",
-        "SÁBADO"
+const dias = [
 
-    ];
+"DOMINGO", "SEGUNDA FEIRA", "TERÇA FEIRA", "QUARTA FEIRA", "QUINTA FEIRA", "SEXTA FEIRA", "SÁBADO"
 
+];
 
-    const dataObj =
-        new Date(
-            data + "T00:00:00"
-        );
+const dataObj = new Date( `${data}T00:00:00` );
 
+if (Number.isNaN(dataObj.getTime())) { return ""; }
 
-    return dias[
-        dataObj.getDay()
-    ];
+return dias[ dataObj.getDay() ];
 
 }
 
-
-/* =========================================================
-   FORMATAR DATA
-   ========================================================= */
+/* ========================================================= FORMATAR DATA ========================================================= */
 
 function formatarData(data) {
 
-    if (!data) {
-        return "";
-    }
+if (!data) { return ""; }
 
+const partes = data.split("-");
 
-    const partes =
-        data.split("-");
+if (partes.length !== 3) { return ""; }
 
-
-    return (
-        partes[2] +
-        "/" +
-        partes[1] +
-        "/" +
-        partes[0]
-    );
+return ( partes[2] + "/" + partes[1] + "/" + partes[0] );
 
 }
 
-
-/* =========================================================
-   VALOR DO CAMPO
-   ========================================================= */
+/* ========================================================= VALOR DO CAMPO ========================================================= */
 
 function valorAtendimento(id) {
 
-    const elemento =
-        document.getElementById(id);
+const elemento = document.getElementById(id);
 
+if (!elemento) { return ""; }
 
-    if (!elemento) {
-        return "";
-    }
-
-
-    return elemento.value.trim();
+return elemento.value.trim();
 
 }
 
-
-/* =========================================================
-   GERAR MENSAGEM
-   ========================================================= */
+/* ========================================================= GERAR MENSAGEM ========================================================= */
 
 function gerarMensagem() {
 
-    const data =
-        valorAtendimento(
-            "atendimentoData"
-        );
+const data = valorAtendimento( "atendimentoData" );
 
+let mensagem = "";
 
-    let mensagem = "";
+/* ===================================================== DATA ===================================================== */
 
+if (data) {
 
-    if (data) {
-
-        mensagem +=
-            "*" +
-            nomeDiaSemana(data) +
-            ", " +
-            formatarData(data) +
-            "*" +
-            "\n";
-
-    }
-
-
-    mensagem +=
-        "*ATENDIMENTO CDF:* " +
-        tecnicosSelecionados("cdf") +
-        "\n";
-
-
-    mensagem +=
-        "*ATENDIMENTO CN2:* " +
-        tecnicosSelecionados("cn2") +
-        "\n";
-
-
-    mensagem +=
-        "*AFERIÇÃO:* " +
-        tecnicosSelecionados("afericao") +
-        "\n";
-
-
-    mensagem +=
-        "*ATUALIZAÇÃO DE CAIXA:* " +
-        tecnicosSelecionados(
-            "atualizacaoCaixa"
-        ) +
-        "\n";
-
-
-    mensagem +=
-        "*PONTO:* " +
-        valorAtendimento(
-            "atendimentoPonto"
-        ) +
-        "\n";
-
-
-    mensagem +=
-        "*CAMINHÃO 01:* " +
-        tecnicosSelecionados(
-            "caminhao1"
-        ) +
-        "\n";
-
-
-    mensagem +=
-        "*RODOVIA, PONTO E SERVIÇO:* " +
-        valorAtendimento(
-            "atendimentoRodovia1"
-        ) +
-        "\n";
-
-
-    mensagem +=
-        "*CAMINHÃO 02:* " +
-        tecnicosSelecionados(
-            "caminhao2"
-        ) +
-        "\n";
-
-
-    mensagem +=
-        "*RODOVIA, PONTO E SERVIÇO:* " +
-        valorAtendimento(
-            "atendimentoRodovia2"
-        ) +
-        "\n";
-
-
-    mensagem +=
-        "*ATUALIZAÇÃO E REVITALIZAÇÃO:* " +
-        tecnicosSelecionados(
-            "atualizacaoRevitalizacao"
-        ) +
-        "\n";
-
-
-    mensagem +=
-        "*RODOVIA, PONTO E SERVIÇO:* " +
-        valorAtendimento(
-            "atendimentoRodovia3"
-        );
-
-
-    const preview =
-        document.getElementById(
-            "mensagemPreview"
-        );
-
-
-    if (preview) {
-
-        preview.value =
-            mensagem;
-
-    }
-
-
-    return mensagem;
+mensagem += "" + nomeDiaSemana(data) + ", " + formatarData(data) + "" + "\n\n";
 
 }
 
+/* ===================================================== CDF ===================================================== */
 
-/* =========================================================
-   WHATSAPP
-   ========================================================= */
+mensagem += "*ATENDIMENTO CDF:* " + (tecnicosSelecionados("cdf") || "") + "\n";
+
+const observacaoCdf = valorAtendimento( "atendimentoObservacaoCdf" );
+
+if (observacaoCdf) {
+
+mensagem += "*OBSERVAÇÃO CDF:* " + observacaoCdf + "\n";
+
+}
+
+/* ===================================================== CN2 ===================================================== */
+
+mensagem += "*ATENDIMENTO CN2:* " + (tecnicosSelecionados("cn2") || "") + "\n";
+
+const observacaoCn2 = valorAtendimento( "atendimentoObservacaoCn2" );
+
+if (observacaoCn2) {
+
+mensagem += "*OBSERVAÇÃO CN2:* " + observacaoCn2 + "\n";
+
+}
+
+/* ===================================================== AFERIÇÃO ===================================================== */
+
+mensagem += "*AFERIÇÃO:* " + (tecnicosSelecionados("afericao") || "") + "\n";
+
+const pontosAfericao = valorAtendimento( "atendimentoAfericao" );
+
+if (pontosAfericao) {
+
+mensagem += "*PONTOS E OBSERVAÇÃO:* " + pontosAfericao + "\n";
+
+}
+
+/* ===================================================== ATUALIZAÇÃO DE CAIXA ===================================================== */
+
+mensagem += "*ATUALIZAÇÃO DE CAIXA:* " + (tecnicosSelecionados("atualizacaoCaixa") || "") + "\n";
+
+const ponto = valorAtendimento( "atendimentoPonto" );
+
+if (ponto) {
+
+mensagem += "*PONTOS E OBSERVAÇÃO:* " + ponto + "\n";
+
+}
+
+/* ===================================================== CAMINHÃO 01 ===================================================== */
+
+mensagem += "*CAMINHÃO 01:* " + (tecnicosSelecionados("caminhao1") || "") + "\n";
+
+const rodovia1 = valorAtendimento( "atendimentoRodovia1" );
+
+if (rodovia1) {
+
+mensagem += "*RODOVIA, PONTO E SERVIÇO:* " + rodovia1 + "\n";
+
+}
+
+/* ===================================================== CAMINHÃO 02 ===================================================== */
+
+mensagem += "*CAMINHÃO 02:* " + (tecnicosSelecionados("caminhao2") || "") + "\n";
+
+const rodovia2 = valorAtendimento( "atendimentoRodovia2" );
+
+if (rodovia2) {
+
+mensagem += "*RODOVIA, PONTO E SERVIÇO:* " + rodovia2 + "\n";
+
+}
+
+/* ===================================================== ATUALIZAÇÃO E REVITALIZAÇÃO ===================================================== */
+
+mensagem += "*ATUALIZAÇÃO E REVITALIZAÇÃO:* " + ( tecnicosSelecionados( "atualizacaoRevitalizacao" ) || "" ) + "\n";
+
+const rodovia3 = valorAtendimento( "atendimentoRodovia3" );
+
+if (rodovia3) {
+
+mensagem += "*RODOVIA, PONTO E SERVIÇO:* " + rodovia3 + "\n";
+
+}
+
+/* ===================================================== OBSERVAÇÃO GERAL ===================================================== */
+
+const observacao = valorAtendimento( "atendimentoObservacao" );
+
+if (observacao) {
+
+mensagem += "\n" + "*OBSERVAÇÃO GERAL:*\n" + observacao;
+
+}
+
+/* ===================================================== PREVIEW ===================================================== */
+
+const preview = document.getElementById( "mensagemPreview" );
+
+const mensagemFinal = mensagem.trim();
+
+if (preview) {
+
+preview.value = mensagemFinal;
+
+}
+
+return mensagemFinal;
+
+}
+
+/* ========================================================= WHATSAPP ========================================================= */
 
 function enviarWhatsApp() {
 
-    const mensagem =
-        gerarMensagem();
+const mensagem = gerarMensagem();
 
+if (!mensagem) {
 
-    if (!mensagem.trim()) {
+alert( "Preencha os dados antes de enviar." );
 
-        alert(
-            "Preencha os dados antes de enviar."
-        );
-
-        return;
-
-    }
-
-
-    const textoCodificado =
-        encodeURIComponent(
-            mensagem
-        );
-
-
-    const url =
-        "https://wa.me/?text=" +
-        textoCodificado;
-
-
-    window.open(
-        url,
-        "_blank"
-    );
+return;
 
 }
 
+const textoCodificado = encodeURIComponent( mensagem );
 
-/* =========================================================
-   COPIAR
-   ========================================================= */
+const url = "https://wa.me/?text=" + textoCodificado;
+
+window.open( url, "_blank", "noopener,noreferrer" );
+
+}
+
+/* ========================================================= COPIAR MENSAGEM ========================================================= */
 
 async function copiarMensagem() {
 
-    const mensagem =
-        gerarMensagem();
+const mensagem = gerarMensagem();
 
+if (!mensagem) {
 
-    try {
+alert( "Não há mensagem para copiar." );
 
-        await navigator
-            .clipboard
-            .writeText(
-                mensagem
-            );
-
-
-        alert(
-            "Mensagem copiada com sucesso!"
-        );
-
-    } catch (erro) {
-
-        alert(
-            "Não foi possível copiar automaticamente. " +
-            "Selecione a mensagem e copie manualmente."
-        );
-
-    }
+return;
 
 }
 
+try {
 
-/* =========================================================
-   LIMPAR
-   ========================================================= */
+if ( navigator.clipboard && window.isSecureContext ) {
+
+await navigator .clipboard .writeText( mensagem );
+
+} else {
+
+const textarea = document.createElement( "textarea" );
+
+textarea.value = mensagem;
+
+textarea.style.position = "fixed";
+
+textarea.style.opacity = "0";
+
+document.body.appendChild( textarea );
+
+textarea.focus();
+
+textarea.select();
+
+const sucesso = document.execCommand( "copy" );
+
+document.body.removeChild( textarea );
+
+if (!sucesso) { throw new Error( "Falha ao copiar" ); }
+
+}
+
+alert( "Mensagem copiada com sucesso!" );
+
+} catch (erro) {
+
+alert( "Não foi possível copiar automaticamente. " + "Selecione a mensagem e copie manualmente." );
+
+}
+
+}
+
+/* ========================================================= LIMPAR ATENDIMENTO ========================================================= */
 
 function limparFormularioAtendimento() {
 
-    const confirmar =
-        confirm(
-            "Deseja realmente limpar todos os campos?"
-        );
+const confirmar = confirm( "Deseja realmente limpar todos os campos?" );
 
+if (!confirmar) { return; }
 
-    if (!confirmar) {
-        return;
-    }
+/* ===================================================== CAMPOS DE TEXTO ===================================================== */
 
+document .querySelectorAll( "#telaAtendimento input[type='text']" ) .forEach(function (campo) {
 
-    document
-        .querySelectorAll(
-            "#telaAtendimento input[type='text']"
-        )
-        .forEach(function(campo) {
+campo.value = "";
 
-            campo.value = "";
+});
 
-        });
+/* ===================================================== TEXTAREAS ===================================================== */
 
+document .querySelectorAll( "#telaAtendimento textarea" ) .forEach(function (campo) {
 
-    document
-        .querySelectorAll(
-            "#telaAtendimento input[type='checkbox']"
-        )
-        .forEach(function(checkbox) {
+campo.value = "";
 
-            checkbox.checked =
-                false;
+});
 
+/* ===================================================== CHECKBOXES ===================================================== */
 
-            const label =
-                checkbox.closest(
-                    ".atendimento-tecnico"
-                );
+document .querySelectorAll( "#telaAtendimento input[type='checkbox']" ) .forEach(function (checkbox) {
 
+checkbox.checked = false;
 
-            if (label) {
+const label = checkbox.closest( ".atendimento-tecnico" );
 
-                label.classList.remove(
-                    "selecionado"
-                );
+if (label) {
 
-            }
-
-        });
-
-
-    document
-        .querySelectorAll(
-            "#telaAtendimento .atendimento-outros"
-        )
-        .forEach(function(campo) {
-
-            campo.value = "";
-
-            campo.classList.remove(
-                "mostrar"
-            );
-
-        });
-
-
-    colocarDataAtualAtendimento();
-
-    gerarMensagem();
+label.classList.remove( "selecionado" );
 
 }
 
+});
 
-/* =========================================================
-   CAMPOS DA PROGRAMAÇÃO
-   ========================================================= */
+/* ===================================================== CAMPOS OUTROS ===================================================== */
+
+document .querySelectorAll( "#telaAtendimento .atendimento-outros" ) .forEach(function (campo) {
+
+campo.value = "";
+
+campo.classList.remove( "mostrar" );
+
+});
+
+/* ===================================================== RESTAURAR DATA ===================================================== */
+
+colocarDataAtualAtendimento();
+
+/* ===================================================== ATUALIZAR PREVIEW ===================================================== */
+
+gerarMensagem();
+
+}
+
+/* ========================================================= CAMPOS DA PROGRAMAÇÃO ========================================================= */
 
 function prepararCamposProgramacao() {
 
-    document
-        .querySelectorAll(
-            "#telaProgramacao .programacao-editavel"
-        )
-        .forEach(function(campo) {
+document .querySelectorAll( "#telaProgramacao .programacao-editavel" ) .forEach(function (campo) {
 
-            campo.addEventListener(
-                "input",
-                function() {
+campo.addEventListener( "input", function () {
 
-                    this.value =
-                        this.value.toUpperCase();
+this.value = this.value.toUpperCase();
 
+this.classList.remove( "programacao-campo-incompleto" );
 
-                    this.classList.remove(
-                        "programacao-campo-incompleto"
-                    );
+} );
 
-                }
-            );
-
-        });
+});
 
 }
 
+/* ========================================================= SOMENTE NÚMEROS ========================================================= */
 
-/* =========================================================
-   VALIDAR CAMPOS
-   ========================================================= */
+function prepararCamposNumericos() {
+
+document .querySelectorAll( ".programacao-velocidade, .programacao-faixa, .programacao-cdf" ) .forEach(function (campo) {
+
+campo.addEventListener( "input", function () {
+
+this.value = this.value.replace( /\D/g, "" );
+
+} );
+
+});
+
+}
+
+/* ========================================================= VALIDAR CAMPOS ========================================================= */
 
 function validarCamposProgramacao() {
 
-    const campos = [
+const campos = [
 
-        {
-            elemento:
-                document.querySelector(
-                    ".programacao-endereco"
-                ),
-            nome:
-                "Endereço"
-        },
+{ elemento: document.querySelector( ".programacao-endereco" ),
 
-        {
-            elemento:
-                document.querySelector(
-                    ".programacao-sentido"
-                ),
-            nome:
-                "Sentido"
-        },
+nome: "Endereço" },
 
-        {
-            elemento:
-                document.querySelector(
-                    ".programacao-ponto"
-                ),
-            nome:
-                "Identificação do Ponto"
-        },
+{ elemento: document.querySelector( ".programacao-sentido" ),
 
-        {
-            elemento:
-                document.querySelector(
-                    ".programacao-velocidade"
-                ),
-            nome:
-                "Velocidade Nominal"
-        },
+nome: "Sentido" },
 
-        {
-            elemento:
-                document.querySelector(
-                    ".programacao-faixa"
-                ),
-            nome:
-                "Faixa"
-        },
+{ elemento: document.querySelector( ".programacao-ponto" ),
 
-        {
-            elemento:
-                document.querySelector(
-                    ".programacao-cdf"
-                ),
-            nome:
-                "CDF"
-        }
+nome: "Identificação do Ponto" },
 
-    ];
+{ elemento: document.querySelector( ".programacao-velocidade" ),
 
+nome: "Velocidade Nominal" },
 
-    const camposVazios = [];
+{ elemento: document.querySelector( ".programacao-faixa" ),
 
+nome: "Faixa" },
 
-    campos.forEach(function(campo) {
+{ elemento: document.querySelector( ".programacao-cdf" ),
 
-        if (!campo.elemento) {
-            return;
-        }
+nome: "CDF" }
 
+];
 
-        const valor =
-            campo.elemento.value.trim();
+const camposVazios = [];
 
+campos.forEach(function (campo) {
 
-        if (valor === "") {
+if (!campo.elemento) { return; }
 
-            campo.elemento.classList.add(
-                "programacao-campo-incompleto"
-            );
+const valor = campo.elemento.value.trim();
 
+if (!valor) {
 
-            camposVazios.push(
-                campo
-            );
+campo.elemento.classList.add( "programacao-campo-incompleto" );
 
-        } else {
+camposVazios.push( campo );
 
-            campo.elemento.classList.remove(
-                "programacao-campo-incompleto"
-            );
+} else {
 
-        }
-
-    });
-
-
-    return camposVazios;
+campo.elemento.classList.remove( "programacao-campo-incompleto" );
 
 }
 
+});
 
-/* =========================================================
-   VALIDAR TIPO DE SERVIÇO
-   ========================================================= */
+return camposVazios;
+
+}
+
+/* ========================================================= VALIDAR TIPO DE SERVIÇO ========================================================= */
 
 function validarTipoServico() {
 
-    return (
-        document.querySelector(
-            '#telaProgramacao input[name="tipoServico"]:checked'
-        ) !== null
-    );
+return ( document.querySelector( '#telaProgramacao input[name="tipoServico"]:checked' ) !== null );
 
 }
 
-
-/* =========================================================
-   IMPRIMIR
-   ========================================================= */
+/* ========================================================= IMPRIMIR ========================================================= */
 
 function validarEImprimir() {
 
-    const tipoServicoValido =
-        validarTipoServico();
+const tipoServicoValido = validarTipoServico();
 
+const camposVazios = validarCamposProgramacao();
 
-    const camposVazios =
-        validarCamposProgramacao();
+if ( !tipoServicoValido || camposVazios.length > 0 ) {
 
+let mensagem = "ATENÇÃO!\n\n";
 
-    if (
-        !tipoServicoValido ||
-        camposVazios.length > 0
-    ) {
+if (!tipoServicoValido) {
 
-        let mensagem =
-            "ATENÇÃO!\n\n";
-
-
-        if (!tipoServicoValido) {
-
-            mensagem +=
-                "• Selecione o tipo de serviço metrológico.\n";
-
-        }
-
-
-        if (camposVazios.length > 0) {
-
-            mensagem +=
-                "\nCampos que precisam ser preenchidos:\n";
-
-
-            camposVazios.forEach(
-                function(campo) {
-
-                    mensagem +=
-                        "• " +
-                        campo.nome +
-                        "\n";
-
-                }
-            );
-
-        }
-
-
-        mensagem +=
-            "\nPreencha todas as informações obrigatórias antes de imprimir.";
-
-
-        alert(
-            mensagem
-        );
-
-
-        if (!tipoServicoValido) {
-
-            const primeiroRadio =
-                document.querySelector(
-                    '#telaProgramacao input[name="tipoServico"]'
-                );
-
-
-            if (primeiroRadio) {
-                primeiroRadio.focus();
-            }
-
-        } else if (
-            camposVazios.length > 0
-        ) {
-
-            camposVazios[0]
-                .elemento
-                .focus();
-
-        }
-
-
-        return;
-
-    }
-
-
-    window.print();
+mensagem += "• Selecione o tipo de serviço metrológico.\n";
 
 }
 
+if (camposVazios.length > 0) {
 
-/* =========================================================
-   ATUALIZAÇÃO AUTOMÁTICA
-   ========================================================= */
+mensagem += "\nCampos que precisam ser preenchidos:\n";
 
-document.addEventListener(
-    "input",
-    function(event) {
+camposVazios.forEach( function (campo) {
 
-        if (
-            event.target.closest(
-                "#telaAtendimento"
-            )
-        ) {
+mensagem += "• " + campo.nome + "\n";
 
-            gerarMensagem();
+} );
 
-        }
+}
 
-    }
-);
+mensagem += "\nPreencha todas as informações obrigatórias antes de imprimir.";
 
+alert( mensagem );
 
-/* =========================================================
-   INICIALIZAÇÃO
-   ========================================================= */
+if (!tipoServicoValido) {
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+const primeiroRadio = document.querySelector( '#telaProgramacao input[name="tipoServico"]' );
 
-        criarCheckboxesAtendimento();
+if (primeiroRadio) {
 
-        colocarDataAtualAtendimento();
+primeiroRadio.focus();
 
-        prepararCamposProgramacao();
+}
 
-        gerarMensagem();
+} else if ( camposVazios.length > 0 ) {
 
-    }
-);
+camposVazios[0] .elemento .focus();
+
+}
+
+return;
+
+}
+
+window.print();
+
+}
+
+/* ========================================================= ATUALIZAÇÃO AUTOMÁTICA DO ATENDIMENTO ========================================================= */
+
+document.addEventListener( "input", function (event) {
+
+if ( event.target.closest( "#telaAtendimento" ) ) {
+
+gerarMensagem();
+
+}
+
+} );
+
+/* ========================================================= ALTERAÇÃO DA DATA ========================================================= */
+
+document.addEventListener( "change", function (event) {
+
+if ( event.target.id === "atendimentoData" ) {
+
+gerarMensagem();
+
+}
+
+} );
+
+/* ========================================================= INICIALIZAÇÃO ========================================================= */
+
+document.addEventListener( "DOMContentLoaded", function () {
+
+criarCheckboxesAtendimento();
+
+colocarDataAtualAtendimento();
+
+prepararCamposProgramacao();
+
+prepararCamposNumericos();
+
+gerarMensagem();
+
+} );
