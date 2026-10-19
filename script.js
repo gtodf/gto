@@ -30,9 +30,9 @@ afericao: [ "Jovailson", "Miguel", "Raimundo", "Robson", "Wanderson" ],
 
 atualizacaoCaixa: [ "Anderson Romildo", "Robson", "Wanderson" ],
 
-caminhao1: [ "Adeilson", "Alessandro", "Braulio", "Elder", "Jesser", "Maciel", "Miguel", "Willian" ],
+caminhao1: [ "Adeilson", "Alessandro", "Braulio", "Elder", "Jesser", "Maciel", "Miguel", "Robson", "Willian" ],
 
-caminhao2: [ "Adeilson", "Alessandro", "Braulio", "Elder", "Jesser", "Maciel", "Miguel", "Willian" ],
+caminhao2: [ "Adeilson", "Alessandro", "Braulio", "Elder", "Jesser", "Maciel", "Miguel", "Robson", "Willian" ],
 
 atualizacaoRevitalizacao: [ "André", "Maciel" ]
 
