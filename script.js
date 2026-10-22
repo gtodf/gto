@@ -22,19 +22,19 @@ window.scrollTo({ top: 0, behavior: "smooth" });
 
 const tecnicosPorGrupo = {
 
-cdf: [ "Abimael", "Adeilson", "Hérico", "Jovailson", "Miguel", "Raimundo", "Robson", "Tomé" ],
+cdf: [ "Abimael", "Adeilson", "Hérico", "Leandro", "Jovailson", "Miguel", "Raimundo", "Robson", "Tomé" ],
 
-cn2: [ "Adeilson", "Jovailson", "Tomé" ],
+cn2: [ "Adeilson", "Leandro", "Jovailson", "Tomé" ],
 
-afericao: [ "Jovailson", "Miguel", "Raimundo", "Robson", "Wanderson" ],
+afericao: [ "Leandro", "Jovailson", "Miguel", "Raimundo", "Robson", "Wanderson" ],
 
-atualizacaoCaixa: [ "Anderson Romildo", "Robson", "Wanderson" ],
+atualizacaoCaixa: [ "Anderson Romildo", "Leandro", "Robson", "Wanderson" ],
 
-caminhao1: [ "Adeilson", "Alessandro", "Braulio", "Elder", "Jesser", "Maciel", "Miguel", "Robson", "Willian" ],
+caminhao1: [ "Adeilson", "Alessandro", "Braulio", "Elder", "Jesser", "Leandro", "Maciel", "Miguel", "Robson", "Willian" ],
 
-caminhao2: [ "Adeilson", "Alessandro", "Braulio", "Elder", "Jesser", "Maciel", "Miguel", "Robson", "Willian" ],
+caminhao2: [ "Adeilson", "Alessandro", "Braulio", "Elder", "Jesser", "Leandro", "Maciel", "Miguel", "Robson", "Willian" ],
 
-atualizacaoRevitalizacao: [ "André", "Maciel" ]
+atualizacaoRevitalizacao: [ "André", "Leandro", "Maciel" ]
 
 };
 
