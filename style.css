@@ -953,7 +953,7 @@ button {
         Times,
         serif;
 
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .programacao-navegacao {
@@ -979,7 +979,7 @@ button {
         1mm
         1.2mm;
 
-    font-size: 11px;
+    font-size: 13px;
 
     line-height: 1.05;
 
@@ -1025,7 +1025,7 @@ button {
 
     top: 0;
 
-    font-size: 11px;
+    font-size: 13px;
 
     line-height: 1.25;
 
@@ -1035,7 +1035,7 @@ button {
 .programacao-titulo {
     text-align: center;
 
-    font-size: 11.5px;
+    font-size: 13px;
 
     font-weight: bold;
 
@@ -1175,7 +1175,7 @@ button {
 .programacao-ensaio-titulo {
     text-align: center;
 
-    font-size: 11px;
+    font-size: 13px;
 
     font-weight: bold;
 
@@ -1225,7 +1225,7 @@ button {
 
     justify-content: space-around;
 
-    font-size: 11px;
+    font-size: 13px;
 
     font-weight: bold;
 }
@@ -1245,7 +1245,7 @@ button {
 
     padding: 1.2mm;
 
-    font-size: 11px;
+    font-size: 13px;
 }
 
 
